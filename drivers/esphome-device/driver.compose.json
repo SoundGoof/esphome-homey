@@ -1,0 +1,43 @@
+{
+  "name": {
+    "en": "ESPHome Device",
+    "ar": "جهاز ESPHome",
+    "da": "ESPHome-enhed",
+    "de": "ESPHome-Gerät",
+    "es": "Dispositivo ESPHome",
+    "fr": "Appareil ESPHome",
+    "it": "Dispositivo ESPHome",
+    "ko": "ESPHome 장치",
+    "nl": "ESPHome-apparaat",
+    "no": "ESPHome-enhet",
+    "pl": "Urządzenie ESPHome",
+    "ru": "Устройство ESPHome",
+    "sv": "ESPHome-enhet"
+  },
+  "class": "other",
+  "$extends": ["esphome-defaults"],
+  "esphome": {
+    "nativeApps": {
+      "ApolloAutomation.AIR-1": "Apollo Automation",
+      "ApolloAutomation.BTN-1": "Apollo Automation",
+      "ApolloAutomation.CAST-1-ETH": "Apollo Automation",
+      "ApolloAutomation.CAST-1-W": "Apollo Automation",
+      "ApolloAutomation.H-1": "Apollo Automation",
+      "ApolloAutomation.H-1D": "Apollo Automation",
+      "ApolloAutomation.MSR-1": "Apollo Automation",
+      "ApolloAutomation.MSR-2": "Apollo Automation",
+      "ApolloAutomation.MSR-2_BLE": "Apollo Automation",
+      "ApolloAutomation.MTR-1": "Apollo Automation",
+      "ApolloAutomation.PLT-1": "Apollo Automation",
+      "ApolloAutomation.PUMP-1": "Apollo Automation",
+      "ApolloAutomation.PWR-1": "Apollo Automation",
+      "ApolloAutomation.R-PRO-1-ETH": "Apollo Automation",
+      "ApolloAutomation.R-PRO-1-W": "Apollo Automation",
+      "ApolloAutomation.RLY-1": "Apollo Automation",
+      "ApolloAutomation.RLY-1_BLE": "Apollo Automation",
+      "ApolloAutomation.TEMP-1": "Apollo Automation",
+      "ApolloAutomation.TEMP_PRO-1-ETH": "Apollo Automation",
+      "ApolloAutomation.TEMP_PRO-1-W": "Apollo Automation"
+    }
+  }
+}

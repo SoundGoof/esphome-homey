@@ -1,0 +1,53 @@
+{
+  "id": "io.esphome",
+  "version": "0.0.1",
+  "compatibility": ">=13.0.0",
+  "brandColor": "#00ccff",
+  "sdk": 3,
+  "runtime": "python",
+  "pythonVersion": "3.14",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "ESPHome"
+  },
+  "description": {
+    "en": "Connect your ESPHome devices to Homey",
+    "ar": "صِل أجهزة ESPHome الخاصة بك بـ Homey",
+    "da": "Tilslut dine ESPHome-enheder til Homey",
+    "de": "Verbinde deine ESPHome-Geräte mit Homey",
+    "es": "Conecta tus dispositivos ESPHome a Homey",
+    "fr": "Connecte tes appareils ESPHome à Homey",
+    "it": "Collega i tuoi dispositivi ESPHome a Homey",
+    "ko": "Homey에 ESPHome 장치를 연결하세요",
+    "nl": "Verbind je ESPHome-apparaten met Homey",
+    "no": "Koble dine ESPHome-enheter til Homey",
+    "pl": "Połącz swoje urządzenia ESPHome z Homey",
+    "ru": "Подключи свои устройства ESPHome к Homey",
+    "sv": "Anslut dina ESPHome-enheter till Homey"
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": [
+    "homey:wireless:ble"
+  ],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Abe Haverkamp",
+    "email": "abe.haverkamp@gmail.com"
+  },
+  "source": "https://github.com/Doekse/esphome-homey",
+  "bugs": {
+    "url": "https://github.com/Doekse/esphome-homey/issues"
+  },
+  "pythonPackages": [
+    "aioesphomeapi",
+    "homey-esphomedriver"
+  ]
+}

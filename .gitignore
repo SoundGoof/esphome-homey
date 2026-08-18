@@ -1,0 +1,46 @@
+# Local Homey env (keep env.json.example)
+/env.json
+
+# Homey CLI build / compose output
+/.homeybuild/
+/app.json
+
+# Homey Python runner (local/dev)
+/python-runner-dev.tar
+
+# Homey Python dependency cache (`homey app dependencies install`)
+/python_packages/
+
+# Copied from homey-esphomedriver during preprocess — do not commit
+/.homeycompose/capabilities/
+/.homeycompose/discovery/
+/.homeycompose/flow/
+/.homeycompose/drivers/templates/
+/.homeycompose/drivers/pair/
+/.homeycompose/drivers/repair/
+/assets/capabilities/
+/locales/
+/drivers/*/pair/
+/drivers/*/repair/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.ruff_cache/
+
+# Node (Homey tooling)
+/node_modules/
+
+# IDEs / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
