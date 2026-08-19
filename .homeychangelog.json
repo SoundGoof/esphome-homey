@@ -1,4 +1,7 @@
 {
+  "0.2.0": {
+    "en": "Climate devices now expose presets, Dry and Fan-only modes, and the actual fan speeds"
+  },
   "0.1.0": {
     "en": "Initial test release"
   }

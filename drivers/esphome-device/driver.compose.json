@@ -16,6 +16,9 @@
   },
   "class": "other",
   "$extends": ["esphome-defaults"],
+  "energy": {
+    "batteries": ["INTERNAL"]
+  },
   "esphome": {
     "nativeApps": {
       "ApolloAutomation.AIR-1": "Apollo Automation",
