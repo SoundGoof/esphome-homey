@@ -359,6 +359,9 @@ font:
     id: font_roboto_400_110
     size: 110
   - file: "fonts/Roboto-Regular.ttf"
+    id: font_roboto_400_120
+    size: 120
+  - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_130
     size: 130
   - file: "fonts/Roboto-Bold.ttf"

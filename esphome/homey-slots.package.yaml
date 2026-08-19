@@ -68,6 +68,21 @@ text_sensor:
     name: "homey_t_slot3_caption"
     update_interval: never
 
+  - platform: template
+    id: homey_t_slot4_caption
+    name: "homey_t_slot4_caption"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot5_caption
+    name: "homey_t_slot5_caption"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot6_caption
+    name: "homey_t_slot6_caption"
+    update_interval: never
+
 sensor:
   - platform: template
     id: homey_n_primary
@@ -95,6 +110,24 @@ sensor:
   - platform: template
     id: homey_n_slot3
     name: "homey_n_slot3"
+    update_interval: never
+    accuracy_decimals: 1
+
+  - platform: template
+    id: homey_n_slot4
+    name: "homey_n_slot4"
+    update_interval: never
+    accuracy_decimals: 1
+
+  - platform: template
+    id: homey_n_slot5
+    name: "homey_n_slot5"
+    update_interval: never
+    accuracy_decimals: 1
+
+  - platform: template
+    id: homey_n_slot6
+    name: "homey_n_slot6"
     update_interval: never
     accuracy_decimals: 1
 
