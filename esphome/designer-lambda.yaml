@@ -1,4 +1,11 @@
 |-
+  // Post-export edit: blank the panel when Homey has switched the display off,
+  // before the generated code draws anything. ePaper holds its last image with
+  // no power, so sleeping without clearing would leave stale data on screen.
+  if (!id(display_on)) {
+    it.fill(Color(255, 255, 255));
+    return;
+  }
   const auto COLOR_WHITE = Color(0, 0, 0); // Inverted for e-ink
   const auto COLOR_BLACK = Color(255, 255, 255); // Inverted for e-ink
   auto color_off = COLOR_WHITE;

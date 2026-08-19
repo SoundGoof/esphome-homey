@@ -25,6 +25,16 @@ esphome:
     - priority: 600
       then:
         - output.turn_on: battery_enable
+    # While on, never sleep. While off, the node still wakes on the deep_sleep
+    # interval and stays up for run_duration, which is the window Homey has to
+    # switch it back on — a sleeping node has no radio and cannot be reached.
+    - priority: -100
+      then:
+        - if:
+            condition:
+              lambda: return id(display_on);
+            then:
+              - deep_sleep.prevent: deep_sleep_control
   # device_info.model is hardcoded to the `board:` value by ESPHome and cannot
   # be overridden, so project.name is the only stable identifier the Homey
   # driver can filter on (BrandProfile.projects / projectPrefix). Without it
@@ -159,6 +169,34 @@ light:
     name: "LED"
     output: led_output
 
+deep_sleep:
+  id: deep_sleep_control
+  # Only reached when the display is switched off. run_duration is the awake
+  # window per wake: long enough to associate, connect and be told to turn on.
+  sleep_duration: 15min
+  run_duration: 60s
+
+switch:
+  - platform: template
+    id: display_power
+    name: "Display"
+    lambda: return id(display_on);
+    turn_on_action:
+      - globals.set:
+          id: display_on
+          value: "true"
+      - deep_sleep.prevent: deep_sleep_control
+      - component.update: epaper_display
+    turn_off_action:
+      - globals.set:
+          id: display_on
+          value: "false"
+      # Draw the blank page first: the panel holds its last image with no
+      # power, so sleeping without clearing leaves stale data on screen.
+      - component.update: epaper_display
+      - delay: 8s
+      - deep_sleep.enter: deep_sleep_control
+
 number:
   - platform: template
     id: temp_offset
@@ -188,6 +226,13 @@ spi:
 
 # The generated lambda switches on a page index; a single page keeps it at 0.
 globals:
+  # Survives deep sleep and power loss, so the panel comes back in the state
+  # Homey last set rather than defaulting on.
+  - id: display_on
+    type: bool
+    restore_value: true
+    initial_value: "true"
+
   - id: display_page
     type: int
     restore_value: false
