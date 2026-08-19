@@ -1,7 +1,7 @@
 |-
-  // Post-export edit: blank the panel when Homey has switched the display off,
-  // before the generated code draws anything. ePaper holds its last image with
-  // no power, so sleeping without clearing would leave stale data on screen.
+  // Blank the panel when Homey has switched the display off, before anything is
+  // drawn. ePaper holds its last image with no power, so sleeping without
+  // clearing would leave stale data on screen.
   if (!id(display_on)) {
     it.fill(Color(255, 255, 255));
     return;
@@ -117,13 +117,19 @@
       // sht_temperature
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%.1f °C", id(sht_temperature).state);
+              if (std::isnan(id(sht_temperature).state))
+                sprintf(wrap_buf, "\u2014");
+              else
+                sprintf(wrap_buf, "%.1f °C", id(sht_temperature).state);
               print_wrapped_text(60, 1030, 560, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // sht_humidity
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%.0f %%", id(sht_humidity).state);
+              if (std::isnan(id(sht_humidity).state))
+                sprintf(wrap_buf, "\u2014");
+              else
+                sprintf(wrap_buf, "%.0f %%", id(sht_humidity).state);
               print_wrapped_text(680, 1030, 560, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // col1
@@ -134,7 +140,10 @@
             }
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%.1f °C", id(homey_n_col1).state);
+              if (std::isnan(id(homey_n_col1).state))
+                sprintf(wrap_buf, "\u2014");
+              else
+                sprintf(wrap_buf, "%.1f °C", id(homey_n_col1).state);
               print_wrapped_text(60, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // col2
@@ -145,7 +154,10 @@
             }
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%.1f °C", id(homey_n_col2).state);
+              if (std::isnan(id(homey_n_col2).state))
+                sprintf(wrap_buf, "\u2014");
+              else
+                sprintf(wrap_buf, "%.1f °C", id(homey_n_col2).state);
               print_wrapped_text(660, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // col3
@@ -156,7 +168,10 @@
             }
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%.1f °C", id(homey_n_col3).state);
+              if (std::isnan(id(homey_n_col3).state))
+                sprintf(wrap_buf, "\u2014");
+              else
+                sprintf(wrap_buf, "%.1f °C", id(homey_n_col3).state);
               print_wrapped_text(1260, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
   }

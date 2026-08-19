@@ -30,11 +30,19 @@ esphome:
     # switch it back on — a sleeping node has no radio and cannot be reached.
     - priority: -100
       then:
+        # Never sleep unless sleeping is enabled AND the display is off. If
+        # sleeping is off the display is forced back on, so a node that cannot
+        # sleep can never be left blank and unreachable.
         - if:
             condition:
-              lambda: return id(display_on);
+              lambda: return !id(sleep_enabled) || id(display_on);
             then:
               - deep_sleep.prevent: deep_sleep_control
+              - lambda: |-
+                  if (!id(sleep_enabled) && !id(display_on)) {
+                    id(display_on) = true;
+                    id(display_power).publish_state(true);
+                  }
   # device_info.model is hardcoded to the `board:` value by ESPHome and cannot
   # be overridden, so project.name is the only stable identifier the Homey
   # driver can filter on (BrandProfile.projects / projectPrefix). Without it
@@ -124,6 +132,27 @@ sensor:
           min_value: 0
           max_value: 100
 
+  # Diagnostic: signal strength, and a human-readable version of it.
+  - platform: wifi_signal
+    id: wifi_rssi
+    name: "WiFi signal"
+    update_interval: 120s
+    entity_category: diagnostic
+
+  - platform: copy
+    source_id: wifi_rssi
+    name: "WiFi quality"
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    entity_category: diagnostic
+    filters:
+      - calibrate_linear:
+          - -90 -> 0
+          - -30 -> 100
+      - clamp:
+          min_value: 0
+          max_value: 100
+
   - platform: sht4x
     i2c_id: bus_a
     update_interval: 60s
@@ -194,8 +223,27 @@ switch:
       # Draw the blank page first: the panel holds its last image with no
       # power, so sleeping without clearing leaves stale data on screen.
       - component.update: epaper_display
-      - delay: 8s
-      - deep_sleep.enter: deep_sleep_control
+      - if:
+          condition:
+            lambda: return id(sleep_enabled);
+          then:
+            - delay: 8s
+            - deep_sleep.enter: deep_sleep_control
+
+  - platform: template
+    id: sleep_switch
+    name: "Sleep when display off"
+    lambda: return id(sleep_enabled);
+    entity_category: config
+    turn_on_action:
+      - globals.set:
+          id: sleep_enabled
+          value: "true"
+    turn_off_action:
+      - globals.set:
+          id: sleep_enabled
+          value: "false"
+      - deep_sleep.prevent: deep_sleep_control
 
 number:
   - platform: template
@@ -232,6 +280,15 @@ globals:
     type: bool
     restore_value: true
     initial_value: "true"
+
+  # Deep sleep is opt-in. On USB the node should stay awake and reachable, and
+  # an unconditional sleep is unrecoverable: switching the display off once
+  # persists through restore_value, so every later boot slept before anything
+  # could switch it back on — including builds with no switch at all.
+  - id: sleep_enabled
+    type: bool
+    restore_value: true
+    initial_value: "false"
 
   - id: display_page
     type: int
