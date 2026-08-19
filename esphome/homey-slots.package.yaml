@@ -54,18 +54,18 @@ text_sensor:
 
   # Captions for the three value columns, pushed alongside the numbers.
   - platform: template
-    id: homey_t_col1_caption
-    name: "homey_t_col1_caption"
+    id: homey_t_slot1_caption
+    name: "homey_t_slot1_caption"
     update_interval: never
 
   - platform: template
-    id: homey_t_col2_caption
-    name: "homey_t_col2_caption"
+    id: homey_t_slot2_caption
+    name: "homey_t_slot2_caption"
     update_interval: never
 
   - platform: template
-    id: homey_t_col3_caption
-    name: "homey_t_col3_caption"
+    id: homey_t_slot3_caption
+    name: "homey_t_slot3_caption"
     update_interval: never
 
 sensor:
@@ -81,20 +81,20 @@ sensor:
   # of which rooms or sensors exist — swapping a sensor is a Flow edit, not a
   # reflash. The node's own SHT4x covers local conditions separately.
   - platform: template
-    id: homey_n_col1
-    name: "homey_n_col1"
+    id: homey_n_slot1
+    name: "homey_n_slot1"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_col2
-    name: "homey_n_col2"
+    id: homey_n_slot2
+    name: "homey_n_slot2"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_col3
-    name: "homey_n_col3"
+    id: homey_n_slot3
+    name: "homey_n_slot3"
     update_interval: never
     accuracy_decimals: 1
 

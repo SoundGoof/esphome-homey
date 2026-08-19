@@ -135,43 +135,43 @@
     // col1
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%s", id(homey_t_col1_caption).state.c_str());
+              sprintf(wrap_buf, "%s", id(homey_t_slot1_caption).state.c_str());
               print_wrapped_text(60, 740, 540, 48, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_col1).state))
+              if (std::isnan(id(homey_n_slot1).state))
                 sprintf(wrap_buf, "\u2014");
               else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_col1).state);
+                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot1).state);
               print_wrapped_text(60, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // col2
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%s", id(homey_t_col2_caption).state.c_str());
+              sprintf(wrap_buf, "%s", id(homey_t_slot2_caption).state.c_str());
               print_wrapped_text(660, 740, 540, 48, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_col2).state))
+              if (std::isnan(id(homey_n_slot2).state))
                 sprintf(wrap_buf, "\u2014");
               else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_col2).state);
+                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot2).state);
               print_wrapped_text(660, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // col3
             {
               char wrap_buf[512];
-              sprintf(wrap_buf, "%s", id(homey_t_col3_caption).state.c_str());
+              sprintf(wrap_buf, "%s", id(homey_t_slot3_caption).state.c_str());
               print_wrapped_text(1260, 740, 540, 48, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_col3).state))
+              if (std::isnan(id(homey_n_slot3).state))
                 sprintf(wrap_buf, "\u2014");
               else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_col3).state);
+                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot3).state);
               print_wrapped_text(1260, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
   }
