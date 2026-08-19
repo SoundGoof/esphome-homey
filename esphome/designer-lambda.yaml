@@ -107,23 +107,17 @@
               else if (weather_state != "" && weather_state != "unknown") ESP_LOGW("weather", "Unhandled weather state: %s", raw_state.c_str());
               it.printf(1600, 210, id(font_material_design_icons_400_260), color_on, TextAlign::CENTER, "%s", icon);
             }
-    // homey_n_primary
-            {
-              char wrap_buf[512];
-              sprintf(wrap_buf, "%.1f", id(homey_n_primary).state);
-              print_wrapped_text(900, 1030, 380, 154, id(font_roboto_400_150), color_on, TextAlign::TOP_LEFT, wrap_buf);
-            }
-    // sht_temperature
+      // sht_temperature
             {
               char wrap_buf[512];
               sprintf(wrap_buf, "%.1f °C", id(sht_temperature).state);
-              print_wrapped_text(60, 1030, 380, 154, id(font_roboto_400_150), color_on, TextAlign::TOP_LEFT, wrap_buf);
+              print_wrapped_text(60, 1030, 560, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // sht_humidity
             {
               char wrap_buf[512];
               sprintf(wrap_buf, "%.0f %%", id(sht_humidity).state);
-              print_wrapped_text(480, 1030, 380, 154, id(font_roboto_400_150), color_on, TextAlign::TOP_LEFT, wrap_buf);
+              print_wrapped_text(680, 1030, 560, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
     // col1
             {

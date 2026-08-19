@@ -19,6 +19,12 @@ packages:
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
+  on_boot:
+    # The profile marks this board batteryEnableAlwaysOn: without this the ADC
+    # sits at 0 V because the divider is never powered.
+    - priority: 600
+      then:
+        - output.turn_on: battery_enable
   # device_info.model is hardcoded to the `board:` value by ESPHome and cannot
   # be overridden, so project.name is the only stable identifier the Homey
   # driver can filter on (BrandProfile.projects / projectPrefix). Without it
@@ -79,6 +85,35 @@ i2c:
   scl: GPIO20
 
 sensor:
+  - platform: adc
+    id: battery_voltage
+    name: "Battery voltage"
+    pin: GPIO1
+    attenuation: 12db
+    update_interval: 300s
+    accuracy_decimals: 2
+    unit_of_measurement: "V"
+    filters:
+      - multiply: 2.0
+
+  # Derived from the voltage rather than polled on its own timer, so it updates
+  # when a reading arrives instead of racing it. 3.27-4.15V is the Designer
+  # profile's calibration for the cell on this board.
+  - platform: copy
+    source_id: battery_voltage
+    id: battery_level
+    name: "Battery"
+    device_class: battery
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    filters:
+      - calibrate_linear:
+          - 3.27 -> 0
+          - 4.15 -> 100
+      - clamp:
+          min_value: 0
+          max_value: 100
+
   - platform: sht4x
     i2c_id: bus_a
     update_interval: 60s
@@ -86,10 +121,64 @@ sensor:
       id: sht_temperature
       name: "Temperature"
       accuracy_decimals: 1
+      filters:
+        # The sensor sits next to the SoC and reads well above room
+        # temperature. The offset is a number entity so it can be trimmed from
+        # Homey without reflashing.
+        - lambda: |-
+            const float offset = id(temp_offset).state;
+            return std::isnan(offset) ? x : x + offset;
     humidity:
       id: sht_humidity
       name: "Humidity"
       accuracy_decimals: 0
+
+# Battery sense is gated by an enable pin, held on because the profile marks
+# this board batteryEnableAlwaysOn. The ADC reads half the pack voltage through
+# a divider, hence the 2.0 multiplier; 3.27-4.15V is the profile's calibration
+# for a single cell, mapped to 0-100%.
+output:
+  - platform: gpio
+    id: battery_enable
+    pin: GPIO40
+
+  # GPIO45 is an ESP32-S3 strapping pin; it is the buzzer on this board, and
+  # driving it after boot is fine — the warning at validation is expected.
+  - platform: ledc
+    id: buzzer_output
+    pin: GPIO45
+
+  # Not in the Designer profile; taken from Seeed's ESPHome cookbook.
+  - platform: gpio
+    id: led_output
+    pin: GPIO16
+
+light:
+  - platform: binary
+    id: status_led
+    name: "LED"
+    output: led_output
+
+number:
+  - platform: template
+    id: temp_offset
+    name: "Temperature offset"
+    unit_of_measurement: "°C"
+    min_value: -25
+    max_value: 25
+    step: 0.1
+    initial_value: 0
+    restore_value: true
+    optimistic: true
+    mode: box
+    # Configuration, not a reading: the Homey driver keeps CONFIG entities off
+    # the tile unless the device's "show configuration" setting is enabled,
+    # which is where a calibration trim belongs.
+    entity_category: config
+
+rtttl:
+  id: buzzer
+  output: buzzer_output
 
 spi:
   id: epaper_spi_bus
@@ -173,9 +262,6 @@ font:
   - file: "fonts/Roboto-Bold.ttf"
     id: font_roboto_700_72
     size: 72
-  - file: "fonts/Roboto-Regular.ttf"
-    id: font_roboto_400_150
-    size: 150
   # datetime: date_font_size (regular) / time_font_size (bold)
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_48
