@@ -47,3 +47,8 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# ESPHome (device YAML lives in esphome/)
+/esphome/secrets.yaml
+/esphome/.esphome/
+/esphome/build/

@@ -1,0 +1,169 @@
+|-
+  const auto COLOR_WHITE = Color(0, 0, 0); // Inverted for e-ink
+  const auto COLOR_BLACK = Color(255, 255, 255); // Inverted for e-ink
+  const auto COLOR_RED = Color(255, 0, 0);
+  const auto COLOR_GREEN = Color(0, 255, 0);
+  const auto COLOR_BLUE = Color(0, 0, 255);
+  const auto COLOR_YELLOW = Color(255, 255, 0);
+  const auto COLOR_ORANGE = Color(255, 165, 0);
+  auto color_off = COLOR_WHITE;
+  auto color_on = COLOR_BLACK;
+
+  // Helper to print text with word-wrap at widget boundary
+  auto print_wrapped_text = [&](int x, int y, int max_w, int line_h, esphome::font::Font *font, Color color, TextAlign align, const char* text) {
+    if (!text || max_w <= 0) return;
+    int cx = x;
+    int cy = y;
+    std::string line;
+    std::string word;
+    const char* p = text;
+    while (*p) {
+      // SANITIZATION: Treat newlines, carriage returns, and tabs as spaces for flow
+      bool is_space = (*p == ' ' || *p == '\n' || *p == '\r' || *p == '\t');
+      if (is_space) {
+        if (!word.empty()) {
+          int ww, wh, wbl, wx;
+          font->measure(word.c_str(), &ww, &wx, &wbl, &wh);
+          int lw = 0, lx;
+          if (!line.empty()) { font->measure(line.c_str(), &lw, &lx, &wbl, &wh); int sw, sx, sbl, sh; font->measure(" ", &sw, &sx, &sbl, &sh); lw += sw; }
+          if (lw + ww > max_w && !line.empty()) {
+            it.print(cx, cy, font, color, align, line.c_str());
+            cy += line_h;
+            line = word;
+          } else {
+            if (!line.empty()) line += " ";
+            line += word;
+          }
+          word.clear();
+        }
+      } else {
+        word += *p;
+      }
+      p++;
+    }
+    if (!word.empty()) {
+      int ww, wh, wbl, wx;
+      font->measure(word.c_str(), &ww, &wx, &wbl, &wh);
+      int lw = 0, lx;
+      if (!line.empty()) { font->measure(line.c_str(), &lw, &lx, &wbl, &wh); int sw, sx, sbl, sh; font->measure(" ", &sw, &sx, &sbl, &sh); lw += sw; }
+      if (lw + ww > max_w && !line.empty()) {
+        it.print(cx, cy, font, color, align, line.c_str());
+        cy += line_h;
+        line = word;
+      } else {
+        if (!line.empty()) line += " ";
+        line += word;
+      }
+    }
+    if (!line.empty()) {
+      it.print(cx, cy, font, color, align, line.c_str());
+    }
+  };
+
+  // Helper to apply a simple grey dither mask for e-paper (checkerboard)
+  auto apply_grey_dither_mask = [&](int x_start, int y_start, int w, int h) {
+    for (int y = y_start; y < y_start + h; y++) {
+      for (int x = x_start; x < x_start + w; x++) {
+        if ((x + y) % 2 == 0) it.draw_pixel_at(x, y, COLOR_WHITE);
+        else it.draw_pixel_at(x, y, COLOR_BLACK);
+      }
+    }
+  };
+
+  // Helper to apply grey dither to text (subtractive - erases every other black pixel)
+  auto apply_grey_dither_to_text = [&](int x_start, int y_start, int w, int h) {
+    for (int y = y_start; y < y_start + h; y++) {
+      for (int x = x_start; x < x_start + w; x++) {
+        if ((x + y) % 2 == 0) it.draw_pixel_at(x, y, COLOR_WHITE);
+      }
+    }
+  };
+  int currentPage = id(display_page);
+  // ═══════════════════════════════════════════════════════════════
+  // ▸ PAGE: Overview
+  // ═══════════════════════════════════════════════════════════════
+  if (currentPage == 0) {
+    // Clear screen for this page
+    it.fill(COLOR_BLACK);
+    color_off = COLOR_BLACK;
+    color_on = COLOR_WHITE;
+    // widget:datetime x:40 y:40 w:120 h:50
+            {
+              auto now = id(ha_time).now();
+              it.strftime(100, 42, id(font_roboto_700_28), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
+              it.strftime(100, 42 + 28 + 2, id(font_roboto_400_16), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
+            }
+    // widget:datetime x:816 y:584 w:303 h:140
+            {
+              auto now = id(ha_time).now();
+              it.strftime(968, 631, id(font_roboto_700_28), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
+              it.strftime(968, 631 + 28 + 2, id(font_roboto_400_16), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
+            }
+    // widget:sensor_text x:40 y:40 w:120 h:40 entity:homey_t_line2
+            {
+              int w1, h1, xoff1, bl1;
+              char value_buf[512];
+              sprintf(value_buf, "%s", id(homey_t_line2).state.c_str());
+              id(font_roboto_400_14)->measure("homey t line2: ", &w1, &xoff1, &bl1, &h1);
+              if (w1 >= 120) {
+                it.printf(40, 40, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, "%s", value_buf);
+              } else {
+                it.printf(40, 40, id(font_roboto_400_14), color_on, TextAlign::TOP_LEFT, "homey t line2: ");
+                int val_max_w = 120 - w1;
+                print_wrapped_text(40 + w1, 40 + (bl1 - 16), val_max_w, 24, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, value_buf);
+              }
+            }
+    // widget:sensor_text x:434 y:410 w:254 h:110 entity:homey_t_line1
+            {
+              int w1, h1, xoff1, bl1;
+              char value_buf[512];
+              sprintf(value_buf, "%s", id(homey_t_line1).state.c_str());
+              id(font_roboto_400_14)->measure("homey t line1: ", &w1, &xoff1, &bl1, &h1);
+              if (w1 >= 254) {
+                it.printf(434, 410, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, "%s", value_buf);
+              } else {
+                it.printf(434, 410, id(font_roboto_400_14), color_on, TextAlign::TOP_LEFT, "homey t line1: ");
+                int val_max_w = 254 - w1;
+                print_wrapped_text(434 + w1, 410 + (bl1 - 16), val_max_w, 24, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, value_buf);
+              }
+            }
+    // widget:weather_icon x:1119 y:410 w:353 h:156 size:148
+            {
+              std::string raw_state = id(homey_t_weather).state;
+              std::string weather_state = "";
+              for(auto &c : raw_state) weather_state += tolower(c);
+              const char* icon = "\U000F0625";
+              if (weather_state == "clear-night") icon = "\U000F0594";
+              else if (weather_state == "cloudy") icon = "\U000F0590";
+              else if (weather_state == "exceptional") icon = "\U000F0026";
+              else if (weather_state == "fog") icon = "\U000F0591";
+              else if (weather_state == "hail") icon = "\U000F0592";
+              else if (weather_state == "lightning") icon = "\U000F0593";
+              else if (weather_state == "lightning-rainy") icon = "\U000F067E";
+              else if (weather_state == "partlycloudy-night") icon = "\U000F0F31";
+              else if (weather_state == "partlycloudy") icon = "\U000F0595";
+              else if (weather_state == "pouring") icon = "\U000F0596";
+              else if (weather_state == "rainy") icon = "\U000F0597";
+              else if (weather_state == "snowy") icon = "\U000F0598";
+              else if (weather_state == "snowy-rainy") icon = "\U000F067F";
+              else if (weather_state == "sunny") icon = "\U000F0599";
+              else if (weather_state == "windy") icon = "\U000F059D";
+              else if (weather_state == "windy-variant") icon = "\U000F059E";
+              else if (weather_state != "" && weather_state != "unknown") ESP_LOGW("weather", "Unhandled weather state: %s", raw_state.c_str());
+              it.printf(1296, 488, id(font_material_design_icons_400_148), color_on, TextAlign::CENTER, "%s", icon);
+            }
+    // widget:sensor_text x:428 y:648 w:191 h:98 entity:homey_n_value1
+            {
+              int w1, h1, xoff1, bl1;
+              char value_buf[512];
+              sprintf(value_buf, "%.1f", id(homey_n_value1).state);
+              id(font_roboto_400_14)->measure("homey n value1: ", &w1, &xoff1, &bl1, &h1);
+              if (w1 >= 191) {
+                it.printf(428, 648, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, "%s", value_buf);
+              } else {
+                it.printf(428, 648, id(font_roboto_400_14), color_on, TextAlign::TOP_LEFT, "homey n value1: ");
+                int val_max_w = 191 - w1;
+                print_wrapped_text(428 + w1, 648 + (bl1 - 16), val_max_w, 24, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, value_buf);
+              }
+            }
+  }

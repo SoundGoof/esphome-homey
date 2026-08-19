@@ -1,0 +1,120 @@
+# Homey slot contract — device-agnostic, include via `packages:`.
+#
+# Homey drives ESPHome displays through user-defined API actions because
+# ESPHome's `display:` is not a native-API entity: no capability mapping can
+# reach a screen. Values arrive as actions, land in template sensors ("slots"),
+# and the display lambda renders whatever the slots currently hold.
+#
+# Slots are deliberately NOT `internal:`. ESPHome's `internal:` hides an entity
+# from the native API entirely — it never appears in list_entities_services() —
+# so internal slots would be undiscoverable and Homey's autocomplete would have
+# no source. Hide them from the device tile with the driver's `hiddenEntities`
+# compose key instead, which separates "exposed over API" from "shown on tile".
+#
+# Two dispatching actions rather than one action per field, and the dispatch is
+# by runtime lookup rather than a hardcoded if-chain: adding a slot means adding
+# a template sensor and nothing else. No lambda edit, no app change, no re-pair.
+#
+# The slot prefix must be on `name:`, not `id:`. ESPHome derives the native-API
+# `object_id` from the entity name (slugified); the YAML `id:` is compile-time
+# only and never crosses the API. Naming a slot "Slot text 1" yields object_id
+# `slot_text_1`, which no prefix rule can match. The names are therefore the
+# slot ids themselves — they are hidden from the Homey tile via `hiddenEntities`,
+# so their unfriendliness never reaches a user.
+
+substitutions:
+  # Override in the device YAML if the display component uses a different id.
+  homey_display_id: epaper_display
+  # Must match the driver's `displaySlots` compose key on the Homey side.
+  homey_text_prefix: homey_t_
+  homey_number_prefix: homey_n_
+
+text_sensor:
+  - platform: template
+    id: homey_t_line1
+    name: "homey_t_line1"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_line2
+    name: "homey_t_line2"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_line3
+    name: "homey_t_line3"
+    update_interval: never
+
+  # Drives the weather_icon widget: Homey pushes a Home Assistant-style
+  # condition string ("sunny", "rainy", "partlycloudy", ...).
+  - platform: template
+    id: homey_t_weather
+    name: "homey_t_weather"
+    update_interval: never
+
+sensor:
+  - platform: template
+    id: homey_n_value1
+    name: "homey_n_value1"
+    update_interval: never
+    accuracy_decimals: 1
+
+  - platform: template
+    id: homey_n_value2
+    name: "homey_n_value2"
+    update_interval: never
+    accuracy_decimals: 1
+
+api:
+  actions:
+    # Slots are resolved at runtime: ESPHome stores each entity's object_id as an
+    # fnv1 hash, so a slot name coming from Homey can be looked up directly. This
+    # is what keeps the convention open-ended — a user adds a template sensor
+    # named `${homey_text_prefix}whatever` and it is immediately writable, with no
+    # change to this dispatcher and no firmware convention to remember beyond the
+    # prefix.
+    - action: homey_set_text
+      variables:
+        slot: string
+        value: string
+      then:
+        - lambda: |-
+            // `slot` arrives as a StringRef, which is not guaranteed to be
+            // null-terminated; str() is the safe conversion.
+            const std::string name = slot.str();
+            if (name.rfind("${homey_text_prefix}", 0) != 0) {
+              ESP_LOGW("homey", "refusing '%s': text slots must start with %s",
+                       name.c_str(), "${homey_text_prefix}");
+              return;
+            }
+            auto *target = App.get_text_sensor_by_key(fnv1_hash(name));
+            if (target == nullptr) {
+              ESP_LOGW("homey", "no text slot named '%s'", name.c_str());
+              return;
+            }
+            target->publish_state(value);
+
+    - action: homey_set_number
+      variables:
+        slot: string
+        value: float
+      then:
+        - lambda: |-
+            // `slot` arrives as a StringRef, which is not guaranteed to be
+            // null-terminated; str() is the safe conversion.
+            const std::string name = slot.str();
+            if (name.rfind("${homey_number_prefix}", 0) != 0) {
+              ESP_LOGW("homey", "refusing '%s': number slots must start with %s",
+                       name.c_str(), "${homey_number_prefix}");
+              return;
+            }
+            auto *target = App.get_sensor_by_key(fnv1_hash(name));
+            if (target == nullptr) {
+              ESP_LOGW("homey", "no number slot named '%s'", name.c_str());
+              return;
+            }
+            target->publish_state(value);
+
+    - action: homey_refresh
+      then:
+        - component.update: ${homey_display_id}
