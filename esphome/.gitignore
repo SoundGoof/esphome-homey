@@ -6,3 +6,4 @@
 
 # Font binaries are populated locally by ./setup-fonts.sh — never committed.
 /fonts/
+ntplock-test.yaml

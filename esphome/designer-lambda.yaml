@@ -1,11 +1,6 @@
 |-
   const auto COLOR_WHITE = Color(0, 0, 0); // Inverted for e-ink
   const auto COLOR_BLACK = Color(255, 255, 255); // Inverted for e-ink
-  const auto COLOR_RED = Color(255, 0, 0);
-  const auto COLOR_GREEN = Color(0, 255, 0);
-  const auto COLOR_BLUE = Color(0, 0, 255);
-  const auto COLOR_YELLOW = Color(255, 255, 0);
-  const auto COLOR_ORANGE = Color(255, 165, 0);
   auto color_off = COLOR_WHITE;
   auto color_on = COLOR_BLACK;
 
@@ -18,7 +13,6 @@
     std::string word;
     const char* p = text;
     while (*p) {
-      // SANITIZATION: Treat newlines, carriage returns, and tabs as spaces for flow
       bool is_space = (*p == ' ' || *p == '\n' || *p == '\r' || *p == '\t');
       if (is_space) {
         if (!word.empty()) {
@@ -59,75 +53,36 @@
       it.print(cx, cy, font, color, align, line.c_str());
     }
   };
-
-  // Helper to apply a simple grey dither mask for e-paper (checkerboard)
-  auto apply_grey_dither_mask = [&](int x_start, int y_start, int w, int h) {
-    for (int y = y_start; y < y_start + h; y++) {
-      for (int x = x_start; x < x_start + w; x++) {
-        if ((x + y) % 2 == 0) it.draw_pixel_at(x, y, COLOR_WHITE);
-        else it.draw_pixel_at(x, y, COLOR_BLACK);
-      }
-    }
-  };
-
-  // Helper to apply grey dither to text (subtractive - erases every other black pixel)
-  auto apply_grey_dither_to_text = [&](int x_start, int y_start, int w, int h) {
-    for (int y = y_start; y < y_start + h; y++) {
-      for (int x = x_start; x < x_start + w; x++) {
-        if ((x + y) % 2 == 0) it.draw_pixel_at(x, y, COLOR_WHITE);
-      }
-    }
-  };
   int currentPage = id(display_page);
-  // ═══════════════════════════════════════════════════════════════
-  // ▸ PAGE: Overview
-  // ═══════════════════════════════════════════════════════════════
   if (currentPage == 0) {
-    // Clear screen for this page
     it.fill(COLOR_BLACK);
     color_off = COLOR_BLACK;
     color_on = COLOR_WHITE;
-    // widget:datetime x:40 y:40 w:120 h:50
+    // datetime 60,40 900x230
             {
               auto now = id(ha_time).now();
-              it.strftime(100, 42, id(font_roboto_700_28), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
-              it.strftime(100, 42 + 28 + 2, id(font_roboto_400_16), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
+              it.strftime(510, 70, id(font_roboto_700_120), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
+              it.strftime(510, 70 + 120 + 2, id(font_roboto_400_48), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
             }
-    // widget:datetime x:816 y:584 w:303 h:140
+    // datetime 1320,1030 490x180
             {
               auto now = id(ha_time).now();
-              it.strftime(968, 631, id(font_roboto_700_28), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
-              it.strftime(968, 631 + 28 + 2, id(font_roboto_400_16), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
+              it.strftime(1565, 1067, id(font_roboto_700_72), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
+              it.strftime(1565, 1067 + 72 + 2, id(font_roboto_400_32), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
             }
-    // widget:sensor_text x:40 y:40 w:120 h:40 entity:homey_t_line2
+    // homey_t_subline
             {
-              int w1, h1, xoff1, bl1;
-              char value_buf[512];
-              sprintf(value_buf, "%s", id(homey_t_line2).state.c_str());
-              id(font_roboto_400_14)->measure("homey t line2: ", &w1, &xoff1, &bl1, &h1);
-              if (w1 >= 120) {
-                it.printf(40, 40, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, "%s", value_buf);
-              } else {
-                it.printf(40, 40, id(font_roboto_400_14), color_on, TextAlign::TOP_LEFT, "homey t line2: ");
-                int val_max_w = 120 - w1;
-                print_wrapped_text(40 + w1, 40 + (bl1 - 16), val_max_w, 24, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, value_buf);
-              }
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%s", id(homey_t_subline).state.c_str());
+              print_wrapped_text(60, 560, 1750, 114, id(font_roboto_400_110), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
-    // widget:sensor_text x:434 y:410 w:254 h:110 entity:homey_t_line1
+    // homey_t_headline
             {
-              int w1, h1, xoff1, bl1;
-              char value_buf[512];
-              sprintf(value_buf, "%s", id(homey_t_line1).state.c_str());
-              id(font_roboto_400_14)->measure("homey t line1: ", &w1, &xoff1, &bl1, &h1);
-              if (w1 >= 254) {
-                it.printf(434, 410, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, "%s", value_buf);
-              } else {
-                it.printf(434, 410, id(font_roboto_400_14), color_on, TextAlign::TOP_LEFT, "homey t line1: ");
-                int val_max_w = 254 - w1;
-                print_wrapped_text(434 + w1, 410 + (bl1 - 16), val_max_w, 24, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, value_buf);
-              }
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%s", id(homey_t_headline).state.c_str());
+              print_wrapped_text(60, 400, 1750, 114, id(font_roboto_400_110), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
-    // widget:weather_icon x:1119 y:410 w:353 h:156 size:148
+    // weather_icon 1380,40 440x340
             {
               std::string raw_state = id(homey_t_weather).state;
               std::string weather_state = "";
@@ -150,20 +105,57 @@
               else if (weather_state == "windy") icon = "\U000F059D";
               else if (weather_state == "windy-variant") icon = "\U000F059E";
               else if (weather_state != "" && weather_state != "unknown") ESP_LOGW("weather", "Unhandled weather state: %s", raw_state.c_str());
-              it.printf(1296, 488, id(font_material_design_icons_400_148), color_on, TextAlign::CENTER, "%s", icon);
+              it.printf(1600, 210, id(font_material_design_icons_400_260), color_on, TextAlign::CENTER, "%s", icon);
             }
-    // widget:sensor_text x:428 y:648 w:191 h:98 entity:homey_n_value1
+    // homey_n_primary
             {
-              int w1, h1, xoff1, bl1;
-              char value_buf[512];
-              sprintf(value_buf, "%.1f", id(homey_n_value1).state);
-              id(font_roboto_400_14)->measure("homey n value1: ", &w1, &xoff1, &bl1, &h1);
-              if (w1 >= 191) {
-                it.printf(428, 648, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, "%s", value_buf);
-              } else {
-                it.printf(428, 648, id(font_roboto_400_14), color_on, TextAlign::TOP_LEFT, "homey n value1: ");
-                int val_max_w = 191 - w1;
-                print_wrapped_text(428 + w1, 648 + (bl1 - 16), val_max_w, 24, id(font_roboto_400_20), color_on, TextAlign::TOP_LEFT, value_buf);
-              }
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%.1f", id(homey_n_primary).state);
+              print_wrapped_text(900, 1030, 380, 154, id(font_roboto_400_150), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+    // sht_temperature
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%.1f °C", id(sht_temperature).state);
+              print_wrapped_text(60, 1030, 380, 154, id(font_roboto_400_150), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+    // sht_humidity
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%.0f %%", id(sht_humidity).state);
+              print_wrapped_text(480, 1030, 380, 154, id(font_roboto_400_150), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+    // col1
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%s", id(homey_t_col1_caption).state.c_str());
+              print_wrapped_text(60, 740, 540, 48, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%.1f °C", id(homey_n_col1).state);
+              print_wrapped_text(60, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+    // col2
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%s", id(homey_t_col2_caption).state.c_str());
+              print_wrapped_text(660, 740, 540, 48, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%.1f °C", id(homey_n_col2).state);
+              print_wrapped_text(660, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+    // col3
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%s", id(homey_t_col3_caption).state.c_str());
+              print_wrapped_text(1260, 740, 540, 48, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+            {
+              char wrap_buf[512];
+              sprintf(wrap_buf, "%.1f °C", id(homey_n_col3).state);
+              print_wrapped_text(1260, 810, 540, 134, id(font_roboto_400_130), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
   }

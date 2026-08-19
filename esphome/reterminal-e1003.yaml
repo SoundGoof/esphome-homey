@@ -9,9 +9,9 @@
 substitutions:
   name: reterminal-e1003
   friendly_name: reTerminal E1003
-  # NTP source. "auto" resolves the DHCP default gateway at boot, which works on
-  # any network without configuration. Set a hostname or IP to pin it instead.
-  ntp_server: auto
+  # NTP source, used when the DHCP server does not advertise one (option 42).
+  # Must be reachable without internet access — a router or a LAN NTP host.
+  ntp_server: 10.255.248.1
 
 packages:
   homey_slots: !include homey-slots.package.yaml
@@ -19,8 +19,6 @@ packages:
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
-  includes:
-    - ntp_gateway.h
   # device_info.model is hardcoded to the `board:` value by ESPHome and cannot
   # be overridden, so project.name is the only stable identifier the Homey
   # driver can filter on (BrandProfile.projects / projectPrefix). Without it
@@ -73,6 +71,26 @@ wifi:
 
 captive_portal:
 
+# Onboard SHT4x. GT911 touch shares this bus at 0x5D; the SHT4x is at its
+# default 0x44.
+i2c:
+  id: bus_a
+  sda: GPIO19
+  scl: GPIO20
+
+sensor:
+  - platform: sht4x
+    i2c_id: bus_a
+    update_interval: 60s
+    temperature:
+      id: sht_temperature
+      name: "Temperature"
+      accuracy_decimals: 1
+    humidity:
+      id: sht_humidity
+      name: "Humidity"
+      accuracy_decimals: 0
+
 spi:
   id: epaper_spi_bus
   clk_pin: GPIO7
@@ -88,22 +106,44 @@ globals:
 
 # The Designer lambda calls id(ha_time).now() for its clock widgets.
 #
-# NTP never points at the internet. With ${ntp_server} left at "auto" the entry
-# below is a placeholder that never answers, and on_boot repoints server 0 at
-# the DHCP default gateway. Set the substitution to pin a specific server.
-# on_boot is too early — it runs before DHCP has handed out a lease, so there is
-# no gateway to read. Retry until one appears; the helper no-ops once applied.
+# NTP never points at the internet.
+#
+# Set ${ntp_server} to a server reachable without internet access — a router or
+# a LAN NTP host. It must be set per network.
+#
+# Do NOT enable CONFIG_LWIP_DHCP_GET_NTP_SRV to pick the server up from DHCP
+# option 42: ESPHome calls sntp_servermode_dhcp() from wifi_sta_ip_config_()
+# without holding the lwIP core lock, so lwIP asserts and the node panics on
+# every wifi connect ("Required to lock TCPIP core functionality!"), boot-loops,
+# and the bootloader rolls back to the previous image. Verified on 2026-08-19
+# with ESPHome 2026.7.4.
+# SNTP is set up before wifi is connected, so its first poll always fails, and
+# on ESP32 SNTPComponent::update() is a no-op (the re-sync is guarded by
+# `#if !defined(USE_ESP32)`). Nothing retries, so the clock sits at 1970 until
+# esp_sntp's own interval elapses. SNTPComponent::setup() is idempotent — it
+# stops SNTP, re-applies servers and interval, then re-inits — so calling it
+# once the network is up is the re-sync ESPHome does not do here.
 interval:
-  - interval: 10s
+  - interval: 30s
     then:
       - lambda: |-
-          if (std::string("${ntp_server}") == "auto")
-            homey_ntp::use_default_gateway();
+          // Unresolved: the node still does not sync. The server answers (a
+          // plain NTP query to 10.255.248.1 returns correct time) and this
+          // lambda is compiled in, but no sync ever completes. Left in place
+          // because it is harmless; the clock reads 1970 until this is chased.
+          if (!id(ha_time).now().is_valid())
+            id(ha_time).setup();
 
 time:
   - platform: sntp
     id: ha_time
     timezone: Europe/Amsterdam
+    # SNTP starts before wifi is up, so the first poll always fails. On ESP32
+    # SNTPComponent::update() is a no-op (the re-sync is #if !defined(USE_ESP32)),
+    # and ESPHome only passes this interval to esp_sntp_set_sync_interval() once
+    # at setup. Left at the lwIP default the retry is an hour away, which leaves
+    # the clock at 1970 and every datetime widget showing epoch.
+    update_interval: 60s
     servers:
       - ${ntp_server}
 
@@ -111,31 +151,46 @@ time:
 # internet. Run ./setup-fonts.sh once per checkout to populate fonts/ from
 # files already on the machine; the binaries are deliberately not in git.
 font:
-  - file: "fonts/Roboto-Regular.ttf"
-    id: font_large
-    size: 96
-  - file: "fonts/Roboto-Regular.ttf"
-    id: font_row
-    size: 48
 
-  # Faces below are referenced by id from the Designer-generated lambda; their
-  # names encode family, weight and size, so regenerating the layout keeps
-  # working as long as the same sizes are used.
+  # Faces below are referenced by id from the Designer-generated lambda. Their
+  # names encode family, weight and size, so these must track the font sizes set
+  # on the widgets in reterminal_layout_*.json — change a size there and the
+  # export references a font id that must exist here.
+  #
+  # sensor_text: label_font_size / value_font_size
   - file: "fonts/Roboto-Regular.ttf"
-    id: font_roboto_400_14
-    size: 14
+    id: font_roboto_400_32
+    size: 32
   - file: "fonts/Roboto-Regular.ttf"
-    id: font_roboto_400_16
-    size: 16
+    id: font_roboto_400_44
+    size: 44
   - file: "fonts/Roboto-Regular.ttf"
-    id: font_roboto_400_20
-    size: 20
+    id: font_roboto_400_110
+    size: 110
+  - file: "fonts/Roboto-Regular.ttf"
+    id: font_roboto_400_130
+    size: 130
   - file: "fonts/Roboto-Bold.ttf"
-    id: font_roboto_700_28
-    size: 28
+    id: font_roboto_700_72
+    size: 72
+  - file: "fonts/Roboto-Regular.ttf"
+    id: font_roboto_400_150
+    size: 150
+  # datetime: date_font_size (regular) / time_font_size (bold)
+  - file: "fonts/Roboto-Regular.ttf"
+    id: font_roboto_400_48
+    size: 48
+  - file: "fonts/Roboto-Bold.ttf"
+    id: font_roboto_700_120
+    size: 120
+  # Sizes from the previous layout, kept so the current designer-lambda.yaml
+  # still compiles. Remove them once the lambda has been regenerated from the
+  # resized layout and no longer references these ids.
+
+  # weather_icon: size
   - file: "fonts/materialdesignicons-webfont.ttf"
-    id: font_material_design_icons_400_148
-    size: 148
+    id: font_material_design_icons_400_260
+    size: 260
     glyphs:
       - "\U000F0026"  # exceptional
       - "\U000F0590"  # cloudy
@@ -173,6 +228,10 @@ display:
     # keeping its leading `|-` and two-space indent.
     #
     # Still needed after each regeneration until fixed in the layout itself:
-    #   1. weather_forecast_home_txt -> homey_t_weather (weather widget unbound)
-    #   2. drop the duplicate datetime widget stacked at 40,40
+    #   1. homey_t_weather_txt -> homey_t_weather, and delete the
+    #      `text_sensor: platform: homeassistant` block Designer emits for it.
+    #      The weather_icon widget ignores `is_local_sensor` (it always emits an
+    #      HA platform sensor), so this one cannot be fixed in the layout. Its
+    #      entity_id is set to homey_t_weather so the generated id is a
+    #      predictable one-token rename rather than Designer's HA default.
     lambda: !include designer-lambda.yaml

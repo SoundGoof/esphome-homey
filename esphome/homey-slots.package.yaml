@@ -31,18 +31,18 @@ substitutions:
 
 text_sensor:
   - platform: template
-    id: homey_t_line1
-    name: "homey_t_line1"
+    id: homey_t_headline
+    name: "homey_t_headline"
     update_interval: never
 
   - platform: template
-    id: homey_t_line2
-    name: "homey_t_line2"
+    id: homey_t_subline
+    name: "homey_t_subline"
     update_interval: never
 
   - platform: template
-    id: homey_t_line3
-    name: "homey_t_line3"
+    id: homey_t_note
+    name: "homey_t_note"
     update_interval: never
 
   # Drives the weather_icon widget: Homey pushes a Home Assistant-style
@@ -52,16 +52,49 @@ text_sensor:
     name: "homey_t_weather"
     update_interval: never
 
+  # Captions for the three value columns, pushed alongside the numbers.
+  - platform: template
+    id: homey_t_col1_caption
+    name: "homey_t_col1_caption"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_col2_caption
+    name: "homey_t_col2_caption"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_col3_caption
+    name: "homey_t_col3_caption"
+    update_interval: never
+
 sensor:
   - platform: template
-    id: homey_n_value1
-    name: "homey_n_value1"
+    id: homey_n_primary
+    name: "homey_n_primary"
+    update_interval: never
+    accuracy_decimals: 1
+
+
+  # Three generic value columns, each paired with a homey_t_col*_label text slot.
+  # Homey pushes both the number and its caption, so the node holds no knowledge
+  # of which rooms or sensors exist — swapping a sensor is a Flow edit, not a
+  # reflash. The node's own SHT4x covers local conditions separately.
+  - platform: template
+    id: homey_n_col1
+    name: "homey_n_col1"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_value2
-    name: "homey_n_value2"
+    id: homey_n_col2
+    name: "homey_n_col2"
+    update_interval: never
+    accuracy_decimals: 1
+
+  - platform: template
+    id: homey_n_col3
+    name: "homey_n_col3"
     update_interval: never
     accuracy_decimals: 1
 
