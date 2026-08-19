@@ -1,4 +1,7 @@
 {
+  "0.3.0": {
+    "en": "Devices can now refresh capabilities after ESPHome entity changes without re-pairing"
+  },
   "0.2.0": {
     "en": "Climate devices now expose presets, Dry and Fan-only modes, and the actual fan speeds"
   },
