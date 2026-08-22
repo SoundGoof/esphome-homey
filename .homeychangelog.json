@@ -1,4 +1,7 @@
 {
+  "0.4.0": {
+    "en": "Locks with an unlatch action now show Open Door and generic buttons get a 'Press' Flow card"
+  },
   "0.3.0": {
     "en": "Devices can now refresh capabilities after ESPHome entity changes without re-pairing"
   },

@@ -11,6 +11,9 @@
 # Homey Python dependency cache (`homey app dependencies install`)
 /python_packages/
 
+# Local helper scripts (not part of the Homey app)
+/scripts/
+
 # Copied from homey-esphomedriver during preprocess — do not commit
 /.homeycompose/capabilities/
 /.homeycompose/discovery/
