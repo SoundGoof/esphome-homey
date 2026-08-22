@@ -52,13 +52,8 @@
     color_on = COLOR_WHITE;
             {
               auto now = id(ha_time).now();
-              it.strftime(510, 70, id(font_roboto_700_120), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
-              it.strftime(510, 192, id(font_roboto_400_48), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
-            }
-            {
-              auto now = id(ha_time).now();
-              it.strftime(1532, 1110, id(font_roboto_700_72), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
-              it.strftime(1532, 1184, id(font_roboto_400_32), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
+              it.strftime(510, 40, id(font_roboto_700_240), color_on, TextAlign::TOP_CENTER, "%H:%M", now);
+              it.strftime(510, 320, id(font_roboto_400_48), color_on, TextAlign::TOP_CENTER, "%a, %b %d", now);
             }
             {
               char wrap_buf[512];
@@ -72,13 +67,10 @@
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_slot1).state))
+              if (std::isnan(id(homey_n_slot1_value).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(homey_n_slot1).state))
-                sprintf(wrap_buf, "\u2014");
-              else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot1).state);
+                sprintf(wrap_buf, "%.1f %s", id(homey_n_slot1_value).state, id(homey_t_slot1_unit).state.empty() ? "${slot1_unit}" : id(homey_t_slot1_unit).state.c_str());
               print_wrapped_text(60, 642, 560, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
@@ -88,13 +80,10 @@
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_slot2).state))
+              if (std::isnan(id(homey_n_slot2_value).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(homey_n_slot2).state))
-                sprintf(wrap_buf, "\u2014");
-              else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot2).state);
+                sprintf(wrap_buf, "%.1f %s", id(homey_n_slot2_value).state, id(homey_t_slot2_unit).state.empty() ? "${slot2_unit}" : id(homey_t_slot2_unit).state.c_str());
               print_wrapped_text(656, 642, 560, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
@@ -104,13 +93,10 @@
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_slot3).state))
+              if (std::isnan(id(homey_n_slot3_value).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(homey_n_slot3).state))
-                sprintf(wrap_buf, "\u2014");
-              else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot3).state);
+                sprintf(wrap_buf, "%.1f %s", id(homey_n_slot3_value).state, id(homey_t_slot3_unit).state.empty() ? "${slot3_unit}" : id(homey_t_slot3_unit).state.c_str());
               print_wrapped_text(1252, 642, 560, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
@@ -120,13 +106,10 @@
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_slot4).state))
+              if (std::isnan(id(homey_n_slot4_value).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(homey_n_slot4).state))
-                sprintf(wrap_buf, "\u2014");
-              else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot4).state);
+                sprintf(wrap_buf, "%.1f %s", id(homey_n_slot4_value).state, id(homey_t_slot4_unit).state.empty() ? "${slot4_unit}" : id(homey_t_slot4_unit).state.c_str());
               print_wrapped_text(60, 892, 560, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
@@ -136,13 +119,10 @@
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_slot5).state))
+              if (std::isnan(id(homey_n_slot5_value).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(homey_n_slot5).state))
-                sprintf(wrap_buf, "\u2014");
-              else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot5).state);
+                sprintf(wrap_buf, "%.1f %s", id(homey_n_slot5_value).state, id(homey_t_slot5_unit).state.empty() ? "${slot5_unit}" : id(homey_t_slot5_unit).state.c_str());
               print_wrapped_text(656, 892, 560, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
             {
@@ -152,38 +132,60 @@
             }
             {
               char wrap_buf[512];
-              if (std::isnan(id(homey_n_slot6).state))
+              if (std::isnan(id(homey_n_slot6_value).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(homey_n_slot6).state))
-                sprintf(wrap_buf, "\u2014");
-              else
-                sprintf(wrap_buf, "%.1f °C", id(homey_n_slot6).state);
+                sprintf(wrap_buf, "%.1f %s", id(homey_n_slot6_value).state, id(homey_t_slot6_unit).state.empty() ? "${slot6_unit}" : id(homey_t_slot6_unit).state.c_str());
               print_wrapped_text(1252, 892, 560, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
-            it.printf(60, 1060, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "Panel");
+            it.printf(60, 1060, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "Panel temp");
             {
               char wrap_buf[512];
-              if (std::isnan(id(sht_temperature).state))
-                sprintf(wrap_buf, "\u2014");
-              else
               if (std::isnan(id(sht_temperature).state))
                 sprintf(wrap_buf, "\u2014");
               else
                 sprintf(wrap_buf, "%.1f °C", id(sht_temperature).state);
-              print_wrapped_text(60, 1122, 400, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
+              print_wrapped_text(60, 1122, 420, 110, id(font_roboto_400_96), color_on, TextAlign::TOP_LEFT, wrap_buf);
             }
-            it.printf(500, 1060, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "Humidity");
+            it.printf(516, 1060, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "Panel humidity");
             {
               char wrap_buf[512];
               if (std::isnan(id(sht_humidity).state))
                 sprintf(wrap_buf, "\u2014");
               else
-              if (std::isnan(id(sht_humidity).state))
+                sprintf(wrap_buf, "%.0f %%", id(sht_humidity).state);
+              print_wrapped_text(516, 1122, 420, 110, id(font_roboto_400_96), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+            it.printf(972, 1060, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "Panel voltage");
+            {
+              char wrap_buf[512];
+              if (std::isnan(id(battery_voltage).state))
                 sprintf(wrap_buf, "\u2014");
               else
-                sprintf(wrap_buf, "%.0f %%", id(sht_humidity).state);
-              print_wrapped_text(500, 1122, 400, 134, id(font_roboto_400_120), color_on, TextAlign::TOP_LEFT, wrap_buf);
+                sprintf(wrap_buf, "%.2f V", id(battery_voltage).state);
+              print_wrapped_text(972, 1122, 420, 110, id(font_roboto_400_96), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+            it.printf(1428, 1060, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "Panel battery");
+            {
+              char wrap_buf[512];
+              if (std::isnan(id(battery_level).state))
+                sprintf(wrap_buf, "\u2014");
+              else
+                sprintf(wrap_buf, "%.0f %%", id(battery_level).state);
+              print_wrapped_text(1428, 1122, 420, 110, id(font_roboto_400_96), color_on, TextAlign::TOP_LEFT, wrap_buf);
+            }
+            {
+              // Touch button. The hit area in the YAML matches this rectangle;
+              // move one and you must move the other. Label and state come from
+              // Homey, so what the button controls is a Flow decision.
+              it.rectangle(60, 1258, 440, 120, color_on);
+              it.rectangle(62, 1260, 436, 116, color_on);
+              std::string label = id(homey_t_button1_label).state;
+              if (label.empty()) label = "Button";
+              std::string state = id(homey_t_button1_state).state;
+              it.printf(80, 1288, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "%s", label.c_str());
+              if (!state.empty())
+                it.printf(480, 1288, id(font_roboto_400_44), color_on, TextAlign::TOP_RIGHT, "%s", state.c_str());
             }
             {
               std::string raw_state = id(homey_t_weather).state;

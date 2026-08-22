@@ -48,7 +48,11 @@
     },
     "settingEntities": {
       "temperature_offset": "temperature_offset"
-    }
+    },
+    "hiddenEntities": [
+      "homey_n_*",
+      "homey_t_*"
+    ]
   },
   "settings": [
     {

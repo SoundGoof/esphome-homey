@@ -23,10 +23,22 @@
 # so their unfriendliness never reaches a user.
 
 substitutions:
+  # Fallback unit per slot, drawn until Homey writes one. A node whose slot
+  # always shows the same kind of reading can set these in its own config and
+  # leave the unit out of the Flow entirely.
+  slot1_unit: ""
+  slot2_unit: ""
+  slot3_unit: ""
+  slot4_unit: ""
+  slot5_unit: ""
+  slot6_unit: ""
   # Override in the device YAML if the display component uses a different id.
   homey_display_id: epaper_display
   # Must match the driver's `displaySlots` compose key on the Homey side.
   homey_text_prefix: homey_t_
+  # Longest slot text the node accepts. The display lambda formats into a
+  # fixed buffer, so this must stay well under its size.
+  homey_text_max: "192"
   homey_number_prefix: homey_n_
 
 text_sensor:
@@ -83,6 +95,46 @@ text_sensor:
     name: "homey_t_slot6_caption"
     update_interval: never
 
+  - platform: template
+    id: homey_t_slot1_unit
+    name: "homey_t_slot1_unit"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot2_unit
+    name: "homey_t_slot2_unit"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot3_unit
+    name: "homey_t_slot3_unit"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot4_unit
+    name: "homey_t_slot4_unit"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot5_unit
+    name: "homey_t_slot5_unit"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_slot6_unit
+    name: "homey_t_slot6_unit"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_button1_label
+    name: "homey_t_button1_label"
+    update_interval: never
+
+  - platform: template
+    id: homey_t_button1_state
+    name: "homey_t_button1_state"
+    update_interval: never
+
 sensor:
   - platform: template
     id: homey_n_primary
@@ -96,38 +148,38 @@ sensor:
   # of which rooms or sensors exist — swapping a sensor is a Flow edit, not a
   # reflash. The node's own SHT4x covers local conditions separately.
   - platform: template
-    id: homey_n_slot1
-    name: "homey_n_slot1"
+    id: homey_n_slot1_value
+    name: "homey_n_slot1_value"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_slot2
-    name: "homey_n_slot2"
+    id: homey_n_slot2_value
+    name: "homey_n_slot2_value"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_slot3
-    name: "homey_n_slot3"
+    id: homey_n_slot3_value
+    name: "homey_n_slot3_value"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_slot4
-    name: "homey_n_slot4"
+    id: homey_n_slot4_value
+    name: "homey_n_slot4_value"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_slot5
-    name: "homey_n_slot5"
+    id: homey_n_slot5_value
+    name: "homey_n_slot5_value"
     update_interval: never
     accuracy_decimals: 1
 
   - platform: template
-    id: homey_n_slot6
-    name: "homey_n_slot6"
+    id: homey_n_slot6_value
+    name: "homey_n_slot6_value"
     update_interval: never
     accuracy_decimals: 1
 
@@ -158,7 +210,16 @@ api:
               ESP_LOGW("homey", "no text slot named '%s'", name.c_str());
               return;
             }
-            target->publish_state(value);
+            // The display lambda formats slot text into a fixed stack buffer,
+            // so a long value from a Flow would smash it during a redraw.
+            // Truncate at the only place every write passes through.
+            std::string text = value.str();
+            if (text.size() > ${homey_text_max}) {
+              ESP_LOGW("homey", "truncating '%s' to %d chars",
+                       name.c_str(), ${homey_text_max});
+              text.resize(${homey_text_max});
+            }
+            target->publish_state(text);
 
     - action: homey_set_number
       variables:

@@ -19,12 +19,33 @@ import sys
 
 OUT = pathlib.Path(__file__).with_name("designer-lambda.yaml")
 
+FALLBACK_TILE = re.compile(r"slot[1-6]")
+"""Tiles the slot package gives a ``${slotN_unit}`` substitution."""
+
 DISPLAY_GUARD = """// Blank the panel when Homey has switched the display off, before anything is
 // drawn. ePaper holds its last image with no power, so sleeping without
 // clearing would leave stale data on screen.
 if (!id(display_on)) {
   it.fill(Color(255, 255, 255));
   return;
+}
+"""
+
+
+TOUCH_BUTTON = """{
+  // Touch button. Designer's `touch_area` widget emits no drawing code, so the
+  // box is added here rather than by hand after every export — the hit area in
+  // reterminal-e1003.yaml matches this rectangle, so move one and move both.
+  // Label and state come from Homey, so what the button controls is a Flow
+  // decision.
+  it.rectangle(60, 1258, 440, 120, color_on);
+  it.rectangle(62, 1260, 436, 116, color_on);
+  std::string label = id(homey_t_button1_label).state;
+  if (label.empty()) label = "Button";
+  std::string state = id(homey_t_button1_state).state;
+  it.printf(80, 1288, id(font_roboto_400_44), color_on, TextAlign::TOP_LEFT, "%s", label.c_str());
+  if (!state.empty())
+    it.printf(480, 1288, id(font_roboto_400_44), color_on, TextAlign::TOP_RIGHT, "%s", state.c_str());
 }
 """
 
@@ -37,6 +58,37 @@ def fix_weather(code: str) -> tuple[str, int]:
     to be rewritten here.
     """
     return re.subn(r"id\(homey_t_weather_txt\)", "id(homey_t_weather)", code)
+
+
+def apply_slot_units(code: str) -> tuple[str, int]:
+    """Draw the unit Homey sent, replacing the one Designer compiled in.
+
+    Designer only knows the widget was drawn from a temperature, so it writes
+    "%.1f °C" into every slot. A slot carries whatever Homey maps to it —
+    humidity, a battery percentage, volts — so the unit has to arrive at
+    runtime, from the tile's `_unit` text sensor. Fixed tiles reading the
+    node's own sensors keep the unit Designer gave them.
+    """
+    pattern = re.compile(
+        r'(sprintf\(\w+, "%\.\d+f)(?: [^"]+)?(", id\(homey_n_(\w+)\)\.state)\);'
+    )
+
+    def replace(m: re.Match[str]) -> str:
+        head, tail, stem = m.groups()
+        # caption, value and unit share a tile name; only the value is suffixed
+        tile = stem.removesuffix("_value")
+        unit = f"id(homey_t_{tile}_unit).state"
+        if FALLBACK_TILE.fullmatch(tile):
+            # A node whose slot always shows the same kind of reading sets
+            # ${slotN_unit} once and leaves the unit out of the Flow entirely.
+            # Only slot1..6 have that substitution; anything else would fail
+            # config validation on an undefined name.
+            expr = f'{unit}.empty() ? "${{{tile}_unit}}" : {unit}.c_str()'
+        else:
+            expr = f"{unit}.c_str()"
+        return f"{head} %s{tail}, {expr});"
+
+    return pattern.subn(replace, code)
 
 
 def guard_nan(code: str) -> tuple[str, int]:
@@ -62,19 +114,26 @@ def guard_nan(code: str) -> tuple[str, int]:
 
 
 def main() -> int:
-    code = sys.stdin.read().rstrip("\n")
+    # The export carries ° and —, so never rely on the locale encoding.
+    code = sys.stdin.buffer.read().decode("utf-8").rstrip("\n")
     if not code:
         print("no lambda on stdin", file=sys.stderr)
         return 1
 
     code, weather = fix_weather(code)
+    # Order matters: `guard_nan` matches Designer's two-argument sprintf, and
+    # `apply_slot_units` rewrites it to three. Guarding second would match
+    # nothing and put `nan` back on every slot.
     code, nans = guard_nan(code)
-    code = DISPLAY_GUARD + code
+    code, units = apply_slot_units(code)
+    code = DISPLAY_GUARD + code + "\n" + TOUCH_BUTTON
 
     body = "\n".join(("  " + line).rstrip() for line in code.split("\n"))
-    OUT.write_text("|-\n" + body + "\n")
+    OUT.write_text("|-\n" + body + "\n", encoding="utf-8")
     print(f"weather references rewritten: {weather}")
+    print(f"slot units taken from Homey: {units}")
     print(f"numeric slots guarded against nan: {nans}")
+    print("touch button drawn: 1")
     print(f"wrote {OUT.name}")
     return 0
 

@@ -42,6 +42,11 @@ esphome:
                   if (!id(sleep_enabled) && !id(display_on)) {
                     id(display_on) = true;
                     id(display_power).publish_state(true);
+                    // The panel holds whatever it last drew, and the next
+                    // scheduled refresh is up to update_interval away — so
+                    // without this Homey reports the display on while it is
+                    // still showing the blank it slept with.
+                    id(${homey_display_id}).update();
                   }
   # device_info.model is hardcoded to the `board:` value by ESPHome and cannot
   # be overridden, so project.name is the only stable identifier the Homey
@@ -207,6 +212,11 @@ deep_sleep:
 
 switch:
   - platform: template
+    id: test_button_switch
+    name: "Test button switch"
+    optimistic: true
+
+  - platform: template
     id: display_power
     name: "Display"
     lambda: return id(display_on);
@@ -244,6 +254,62 @@ switch:
           id: sleep_enabled
           value: "false"
       - deep_sleep.prevent: deep_sleep_control
+
+# GT911 capacitive touch, on the same I2C bus as the SHT4x at 0x5D. No
+# interrupt or reset pin is wired up here, so the component polls; that is
+# fine for a panel whose job is a handful of button presses.
+text_sensor:
+  # Raw coordinates of the last press, for calibrating the drawn button against
+  # the touch panel without a serial cable.
+  - platform: template
+    id: touch_last
+    name: "Last touch"
+    entity_category: diagnostic
+    update_interval: never
+
+touchscreen:
+  - platform: gt911
+    id: panel_touch
+    display: epaper_display
+    on_touch:
+      # Published so touch can be calibrated against the drawn button without
+      # a serial cable: read this entity over the API and compare with where
+      # the press landed on screen.
+      - text_sensor.template.publish:
+          id: touch_last
+          state: !lambda 'char b[32]; sprintf(b, "%d,%d", touch.x, touch.y); return {b};'
+
+button:
+  # Lets Homey reboot the panel without a trip to the USB cable. The driver
+  # replays its display slots on reconnect, so a restart no longer blanks the
+  # screen until each source happens to change.
+  - platform: restart
+    name: "Restart"
+    entity_category: diagnostic
+
+binary_sensor:
+  # Mirrors the test switch below so a press can be simulated over the API.
+  # Touch cannot be faked remotely, and every diagnosis otherwise costs someone
+  # a walk to the panel.
+  - platform: template
+    id: test_button
+    name: "Test button"
+    lambda: 'return id(test_button_switch).state;'
+
+  # Matches the rectangle the display lambda draws. Homey sees an ordinary
+  # boolean, so it gets both a "became true" trigger and a tile state.
+  - platform: touchscreen
+    touchscreen_id: panel_touch
+    name: "Screen button"
+    # Deliberately larger than the drawn box (60,1258 to 500,1378): a finger
+    # is wider than a pixel and presses land low, so the hit area runs to the
+    # bottom edge of the panel. The same box exists as a `touch_area` widget in
+    # the Designer layout, so a re-export produces these bounds rather than
+    # dropping them.
+    x_min: 30
+    x_max: 560
+    y_min: 1220
+    y_max: 1404
 
 number:
   - platform: template
@@ -345,35 +411,51 @@ font:
 
   # Faces below are referenced by id from the Designer-generated lambda. Their
   # names encode family, weight and size, so these must track the font sizes set
-  # on the widgets in reterminal_layout_*.json — change a size there and the
+  # on the widgets in reterminal-e1003.layout.json — change a size there and the
   # export references a font id that must exist here.
   #
   # sensor_text: label_font_size / value_font_size
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_32
     size: 32
+    glyphsets: [GF_Latin_Core]
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_44
     size: 44
+    glyphsets: [GF_Latin_Core]
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_110
     size: 110
+    glyphsets: [GF_Latin_Core]
+  - file: "fonts/Roboto-Regular.ttf"
+    id: font_roboto_400_96
+    size: 96
+    glyphsets: [GF_Latin_Core]
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_120
     size: 120
+    glyphsets: [GF_Latin_Core]
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_130
     size: 130
+    glyphsets: [GF_Latin_Core]
   - file: "fonts/Roboto-Bold.ttf"
     id: font_roboto_700_72
     size: 72
+    glyphsets: [GF_Latin_Core]
   # datetime: date_font_size (regular) / time_font_size (bold)
   - file: "fonts/Roboto-Regular.ttf"
     id: font_roboto_400_48
     size: 48
+    glyphsets: [GF_Latin_Core]
   - file: "fonts/Roboto-Bold.ttf"
     id: font_roboto_700_120
     size: 120
+    glyphsets: [GF_Latin_Core]
+  - file: "fonts/Roboto-Bold.ttf"
+    id: font_roboto_700_240
+    size: 240
+    glyphsets: [GF_Latin_Core]
   # Sizes from the previous layout, kept so the current designer-lambda.yaml
   # still compiles. Remove them once the lambda has been regenerated from the
   # resized layout and no longer references these ids.
