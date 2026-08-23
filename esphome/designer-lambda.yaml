@@ -192,6 +192,29 @@
               std::string weather_state = "";
               for (auto &c : raw_state) weather_state += tolower(c);
               const char* icon = "\U000F0625";
+              // Fold the Swedish Weather app's vocabulary onto Designer's.
+              std::string compact;
+              for (auto &c : weather_state) if (c != ' ') compact += c;
+              if (compact == "cloudysky" || compact == "overcast")
+                weather_state = "cloudy";
+              else if (compact == "fog")
+                weather_state = "fog";
+              else if (compact == "thunder")
+                weather_state = "lightning";
+              else if (compact == "thunderstorm")
+                weather_state = "lightning-rainy";
+              else if (compact == "halfclearsky" || compact == "variablecloudiness")
+                weather_state = "partlycloudy";
+              else if (compact == "heavyrain" || compact == "heavyrainshowers")
+                weather_state = "pouring";
+              else if (compact == "lightrain" || compact == "lightrainshowers" || compact == "moderaterain" || compact == "moderaterainshowers")
+                weather_state = "rainy";
+              else if (compact == "heavysnowfall" || compact == "heavysnowshowers" || compact == "lightsnowfall" || compact == "lightsnowshowers" || compact == "moderatesnowfall" || compact == "moderatesnowshowers")
+                weather_state = "snowy";
+              else if (compact == "heavysleet" || compact == "heavysleetshowers" || compact == "lightsleet" || compact == "lightsleetshowers" || compact == "moderatesleet" || compact == "moderatesleetshowers")
+                weather_state = "snowy-rainy";
+              else if (compact == "clearsky" || compact == "nearlyclearsky")
+                weather_state = "sunny";
               if (false) {}
               else if (weather_state == "clear-night") icon = "\U000F0594";
               else if (weather_state == "cloudy") icon = "\U000F0590";

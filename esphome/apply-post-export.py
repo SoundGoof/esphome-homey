@@ -91,6 +91,65 @@ def apply_slot_units(code: str) -> tuple[str, int]:
     return pattern.subn(replace, code)
 
 
+SMHI_TO_DESIGNER = {
+    "cloudy": ("cloudysky", "overcast"),
+    "fog": ("fog",),
+    "lightning": ("thunder",),
+    "lightning-rainy": ("thunderstorm",),
+    "partlycloudy": ("halfclearsky", "variablecloudiness"),
+    "pouring": ("heavyrain", "heavyrainshowers"),
+    "rainy": ("lightrain", "lightrainshowers", "moderaterain", "moderaterainshowers"),
+    "snowy": ("heavysnowfall", "heavysnowshowers", "lightsnowfall", "lightsnowshowers", "moderatesnowfall", "moderatesnowshowers"),
+    "snowy-rainy": ("heavysleet", "heavysleetshowers", "lightsleet", "lightsleetshowers", "moderatesleet", "moderatesleetshowers"),
+    "sunny": ("clearsky", "nearlyclearsky"),
+}
+"""Designer icon name -> the SMHI states that should draw it.
+
+Taken from the Flow this replaces, so the panel keeps the same icon for the
+same weather. Keys are Designer's Home Assistant vocabulary; values are the
+Swedish Weather app's own states, lowercased and space-stripped.
+"""
+
+
+def fold_smhi_vocabulary(code: str) -> tuple[str, int]:
+    """Teach the icon chain to understand SMHI's wording as well as HA's.
+
+    Designer generates the chain against Home Assistant names, but the value
+    now arrives straight from the Swedish Weather app, which has its own. That
+    app's Flow conditions cannot do the translation: its
+    `drivers/weather/driver.js` compares the capability to the dropdown id with
+    `===`, so a state containing a space -- `Moderate rain` against
+    `Moderaterain` -- never matches, and only the four single-word states ever
+    fire.
+
+    Folding here instead lets Homey write the raw state to the slot, which
+    makes the 35 Flow cards that used to spell out this mapping unnecessary.
+    Spaces are stripped rather than enumerated so each SMHI state can be
+    written as one word, and a name that is already Designer's passes through:
+    `fog` is the only string in both vocabularies and it maps to itself.
+    """
+    anchor = re.compile(r"(?m)^([ \t]*)if \(false\) \{\}")
+
+    def insert(match: "re.Match[str]") -> str:
+        pad = match.group(1)
+        lines = [
+            "// Fold the Swedish Weather app's vocabulary onto Designer's.",
+            "std::string compact;",
+            "for (auto &c : weather_state) if (c != ' ') compact += c;",
+        ]
+        keyword = "if"
+        for name in sorted(SMHI_TO_DESIGNER):
+            tests = " || ".join(
+                'compact == "{}"'.format(state) for state in SMHI_TO_DESIGNER[name]
+            )
+            lines.append("{} ({})".format(keyword, tests))
+            lines.append('  weather_state = "{}";'.format(name))
+            keyword = "else if"
+        return "\n".join(pad + line for line in lines) + "\n" + match.group(0)
+
+    return anchor.subn(insert, code, count=1)
+
+
 def guard_nan(code: str) -> tuple[str, int]:
     """Print a dash rather than `nan` for a slot nothing has written yet.
 
@@ -126,12 +185,14 @@ def main() -> int:
     # nothing and put `nan` back on every slot.
     code, nans = guard_nan(code)
     code, units = apply_slot_units(code)
+    code, smhi = fold_smhi_vocabulary(code)
     code = DISPLAY_GUARD + code + "\n" + TOUCH_BUTTON
 
     body = "\n".join(("  " + line).rstrip() for line in code.split("\n"))
     OUT.write_text("|-\n" + body + "\n", encoding="utf-8")
     print(f"weather references rewritten: {weather}")
     print(f"slot units taken from Homey: {units}")
+    print(f"SMHI states folded into the icon chain: {smhi}")
     print(f"numeric slots guarded against nan: {nans}")
     print("touch button drawn: 1")
     print(f"wrote {OUT.name}")
