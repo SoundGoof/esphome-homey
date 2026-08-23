@@ -490,10 +490,24 @@ display:
     model: seeed-reterminal-e1003
     # The model preset already supplies dimensions, busy/reset/cs/enable pins,
     # vcom, vcom_register, force_temperature and mirror_x. Do not restate them.
-    update_interval: 300s
+    # Redraws only when something asks for one: the boot lambda, Homey's
+    # `homey_refresh`, and the display power switch all call component.update
+    # explicitly. A timed interval would add a refresh nobody asked for.
+    update_interval: never
+    # Monochrome is what makes a refresh bearable. The IT8951 component only
+    # downgrades a refresh from GC16 to the fast, non-flashing DU waveform when
+    # the framebuffer is 1bpp — in grayscale every update is a flash-to-black
+    # clean. The layout costs nothing to give up: it draws in `color_on` and
+    # `color_off` only, and the smallest face is 32px, so a hard threshold reads
+    # the same as an anti-aliased edge.
+    grayscale: false
+    # Pure black and white, so there are no pale tones worth stippling; a hard
+    # threshold keeps the digits crisp.
+    dithering: false
+    # DU leaves ghosting behind, so every 30th refresh runs a full GC16 clean.
+    # This counts updates rather than time: at a one-minute Homey cron that is
+    # roughly half-hourly, and it stretches out if the cron slows down.
     full_update_every: 30
-    grayscale: true
-    dithering: true
     update_mode: GC16
     # The render code is the Designer export, kept in its own file so updating
     # the layout is a file replacement rather than surgery on this one: design
