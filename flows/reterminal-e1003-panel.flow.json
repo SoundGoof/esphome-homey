@@ -1,0 +1,374 @@
+{
+  "name": "{{name}}",
+  "enabled": true,
+  "cards": {
+    "078e51e7-3135-4bd4-a890-ece19a6bd184": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_slot1_caption",
+          "name": "slot1 caption"
+        },
+        "value": "Bedroom"
+      },
+      "x": 1140,
+      "y": 0,
+      "outputSuccess": [
+        "59d8cf0b-39a7-45a4-89a3-44e6f03c4256"
+      ]
+    },
+    "59d8cf0b-39a7-45a4-89a3-44e6f03c4256": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_number_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_n_slot1_value",
+          "name": "slot1 value"
+        },
+        "value": "[[homey:device:{{sensors_1_3}}|measure_temperature]]"
+      },
+      "x": 1490,
+      "y": 0,
+      "outputSuccess": []
+    },
+    "d86d4bfa-7437-49d9-ac39-41fc700c2f6e": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_slot2_caption",
+          "name": "slot2 caption"
+        },
+        "value": "Outside"
+      },
+      "x": 1140,
+      "y": 160,
+      "outputSuccess": [
+        "90279f08-ebe0-48b9-ad9f-46e9bbbba677"
+      ]
+    },
+    "90279f08-ebe0-48b9-ad9f-46e9bbbba677": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_number_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_n_slot2_value",
+          "name": "slot2 value"
+        },
+        "value": "[[homey:device:{{sensors_1_3}}|measure_temperature.outside_temperature]]"
+      },
+      "x": 1490,
+      "y": 160,
+      "outputSuccess": []
+    },
+    "ef232aaa-3ceb-47ab-a8e4-d6028901f08d": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_slot3_caption",
+          "name": "slot3 caption"
+        },
+        "value": "Garage"
+      },
+      "x": 1140,
+      "y": 320,
+      "outputSuccess": [
+        "99fefc3d-a9d2-4373-8667-862df9c8e511"
+      ]
+    },
+    "99fefc3d-a9d2-4373-8667-862df9c8e511": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_number_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_n_slot3_value",
+          "name": "slot3 value"
+        },
+        "value": "[[homey:device:{{sensors_1_3}}|measure_temperature.garage_temperature]]"
+      },
+      "x": 1490,
+      "y": 320,
+      "outputSuccess": []
+    },
+    "f20c4ef2-e974-486e-8f74-5633d961c69b": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_slot4_caption",
+          "name": "slot4 caption"
+        },
+        "value": "Bedroom B"
+      },
+      "x": 1140,
+      "y": 480,
+      "outputSuccess": [
+        "85800430-7e6e-45b2-8860-400fc8602944"
+      ]
+    },
+    "85800430-7e6e-45b2-8860-400fc8602944": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_number_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_n_slot4_value",
+          "name": "slot4 value"
+        },
+        "value": "[[homey:device:{{sensors_4_6}}|measure_temperature]]"
+      },
+      "x": 1490,
+      "y": 480,
+      "outputSuccess": []
+    },
+    "51b5ccfb-eee9-41b7-9743-d2148ec9497d": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_slot5_caption",
+          "name": "slot5 caption"
+        },
+        "value": "Outside B"
+      },
+      "x": 1140,
+      "y": 640,
+      "outputSuccess": [
+        "8ff6a09e-5b24-43a7-abd7-bd01e62241ac"
+      ]
+    },
+    "8ff6a09e-5b24-43a7-abd7-bd01e62241ac": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_number_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_n_slot5_value",
+          "name": "slot5 value"
+        },
+        "value": "[[homey:device:{{sensors_4_6}}|measure_temperature.outside_temperature]]"
+      },
+      "x": 1490,
+      "y": 640,
+      "outputSuccess": []
+    },
+    "4d5f3e6b-ef8c-4619-a0fc-78a2cec6a9b7": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_slot6_caption",
+          "name": "slot6 caption"
+        },
+        "value": "Garage B"
+      },
+      "x": 1140,
+      "y": 800,
+      "outputSuccess": [
+        "e38cb73f-dcbf-482e-8c92-860c4633109d"
+      ]
+    },
+    "e38cb73f-dcbf-482e-8c92-860c4633109d": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_number_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_n_slot6_value",
+          "name": "slot6 value"
+        },
+        "value": "[[homey:device:{{sensors_4_6}}|measure_temperature.garage_temperature]]"
+      },
+      "x": 1490,
+      "y": 800,
+      "outputSuccess": []
+    },
+    "7ebad820-5330-4a07-b4dc-e03ff21e2b3d": {
+      "type": "trigger",
+      "id": "homey:manager:cron:every_nth",
+      "args": {
+        "n": 1,
+        "type": "minute"
+      },
+      "x": 180,
+      "y": 400,
+      "outputSuccess": [
+        "2311aefc-86ff-468e-b7da-8f699e596b49"
+      ]
+    },
+    "c16f8850-4f83-4f76-9391-3a40294108f5": {
+      "type": "trigger",
+      "id": "homey:device:{{panel}}:esphome_boolean_true",
+      "args": {},
+      "x": 1130,
+      "y": 1020,
+      "outputSuccess": [
+        "385a2dcc-0754-4fba-ae8e-109f17457f96"
+      ]
+    },
+    "385a2dcc-0754-4fba-ae8e-109f17457f96": {
+      "type": "action",
+      "id": "homey:device:{{panel}}:toggle",
+      "args": {},
+      "x": 1480,
+      "y": 1020
+    },
+    "576452f1-318f-41db-9b5d-05437c18cbf3": {
+      "type": "trigger",
+      "id": "homey:device:{{panel}}:onoff_true",
+      "args": {},
+      "x": 1130,
+      "y": 1100,
+      "outputSuccess": [
+        "a4431f9f-4ccd-4100-929e-c47c69204a14"
+      ]
+    },
+    "a4431f9f-4ccd-4100-929e-c47c69204a14": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_button1_state",
+          "name": "button1 state"
+        },
+        "value": "on"
+      },
+      "x": 1480,
+      "y": 1100
+    },
+    "87eda849-e470-4e21-891e-2a054823a671": {
+      "type": "trigger",
+      "id": "homey:device:{{panel}}:onoff_false",
+      "args": {},
+      "x": 1130,
+      "y": 1180,
+      "outputSuccess": [
+        "9b978e0a-134f-446c-9d58-c43f6ad21724"
+      ]
+    },
+    "9b978e0a-134f-446c-9d58-c43f6ad21724": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_button1_state",
+          "name": "button1 state"
+        },
+        "value": "off"
+      },
+      "x": 1480,
+      "y": 1180
+    },
+    "738aeeca-7f07-4fdc-9536-ef614867aac7": {
+      "type": "trigger",
+      "id": "homey:device:{{weather}}:WeatherSituationChange",
+      "args": {},
+      "x": 180,
+      "y": 1620,
+      "outputSuccess": [
+        "c310c23c-2571-43ef-aa4a-51ec92898d9d"
+      ]
+    },
+    "1642f70f-650c-4c1e-9a4a-74707b3817b1": {
+      "type": "trigger",
+      "id": "homey:manager:cron:every_nth",
+      "args": {
+        "n": 10,
+        "type": "minute"
+      },
+      "x": 180,
+      "y": 1420,
+      "outputSuccess": [
+        "c310c23c-2571-43ef-aa4a-51ec92898d9d"
+      ]
+    },
+    "9f268c6b-5ad4-4208-a75a-32504ba5068c": {
+      "type": "start",
+      "x": 200,
+      "y": 820,
+      "outputSuccess": [
+        "2311aefc-86ff-468e-b7da-8f699e596b49",
+        "c310c23c-2571-43ef-aa4a-51ec92898d9d"
+      ]
+    },
+    "2311aefc-86ff-468e-b7da-8f699e596b49": {
+      "type": "any",
+      "x": 660,
+      "y": 420,
+      "outputSuccess": [
+        "078e51e7-3135-4bd4-a890-ece19a6bd184",
+        "d86d4bfa-7437-49d9-ac39-41fc700c2f6e",
+        "ef232aaa-3ceb-47ab-a8e4-d6028901f08d",
+        "f20c4ef2-e974-486e-8f74-5633d961c69b",
+        "51b5ccfb-eee9-41b7-9743-d2148ec9497d",
+        "4d5f3e6b-ef8c-4619-a0fc-78a2cec6a9b7"
+      ]
+    },
+    "c310c23c-2571-43ef-aa4a-51ec92898d9d": {
+      "type": "any",
+      "x": 960,
+      "y": 1560,
+      "outputSuccess": [
+        "11111111-2222-4333-8444-555555555555"
+      ]
+    },
+    "11111111-2222-4333-8444-555555555555": {
+      "type": "action",
+      "id": "homey:app:io.esphome:esphome_display_text_set",
+      "args": {
+        "panel": {
+          "id": "{{panel}}"
+        },
+        "slot": {
+          "id": "homey_t_weather",
+          "name": "weather"
+        },
+        "value": "[[homey:device:{{weather}}|measure_weather_situation_cp]]"
+      },
+      "x": 1500,
+      "y": 1540,
+      "outputSuccess": []
+    }
+  }
+}
