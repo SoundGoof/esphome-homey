@@ -13,6 +13,17 @@ substitutions:
   # Must be reachable without internet access — a router or a LAN NTP host.
   ntp_server: 10.255.248.1
 
+  # The unit each value tile draws when Homey has not sent one. Every tile here
+  # shows a temperature, so the unit belongs to the layout rather than to every
+  # write, and a Flow only has to send the number. A tile whose kind of reading
+  # varies can still write homey_t_slotN_unit, which takes precedence.
+  slot1_unit: "°C"
+  slot2_unit: "°C"
+  slot3_unit: "°C"
+  slot4_unit: "°C"
+  slot5_unit: "°C"
+  slot6_unit: "°C"
+
 packages:
   homey_slots: !include homey-slots.package.yaml
 
