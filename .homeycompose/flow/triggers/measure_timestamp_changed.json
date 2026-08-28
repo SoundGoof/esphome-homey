@@ -1,0 +1,47 @@
+{
+  "id": "measure_timestamp_changed",
+  "title": {
+    "en": "The timestamp changed",
+    "ar": "تغيّر الطابع الزمني",
+    "da": "Tidsstemplet er ændret",
+    "de": "Der Zeitstempel hat sich geändert",
+    "es": "La marca de tiempo ha cambiado",
+    "fr": "L’horodatage a changé",
+    "it": "Il timestamp è cambiato",
+    "ko": "타임스탬프가 변경됨",
+    "nl": "Het tijdstempel is veranderd",
+    "no": "Tidsstempelet er endret",
+    "pl": "Znacznik czasu uległ zmianie",
+    "ru": "Метка времени изменилась",
+    "sv": "Tidsstämpeln har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_timestamp",
+      "title": {
+        "en": "Timestamp",
+        "ar": "طابع زمني",
+        "da": "Tidsstempel",
+        "de": "Zeitstempel",
+        "es": "Marca de tiempo",
+        "fr": "Horodatage",
+        "it": "Timestamp",
+        "ko": "타임스탬프",
+        "nl": "Tijdstempel",
+        "no": "Tidsstempel",
+        "pl": "Znacznik czasu",
+        "ru": "Метка времени",
+        "sv": "Tidsstämpel"
+      },
+      "type": "string",
+      "example": "2026-08-14T21:00:00Z"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_timestamp"
+    }
+  ]
+}

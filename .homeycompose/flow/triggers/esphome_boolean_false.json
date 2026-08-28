@@ -1,0 +1,47 @@
+{
+  "id": "esphome_boolean_false",
+  "title": {
+    "en": "A boolean became false",
+    "ar": "أصبح boolean خاطئًا",
+    "da": "En boolean blev falsk",
+    "de": "Ein Boolean wurde falsch",
+    "es": "Un booleano pasó a falso",
+    "fr": "Un booléen est devenu faux",
+    "it": "Un booleano è diventato falso",
+    "ko": "boolean이 false가 됨",
+    "nl": "Een boolean werd onwaar",
+    "no": "En boolean ble usann",
+    "pl": "Wartość boolean stała się fałszywa",
+    "ru": "Boolean стал false",
+    "sv": "En boolean blev falsk"
+  },
+  "tokens": [
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Flag"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_boolean"
+    }
+  ]
+}

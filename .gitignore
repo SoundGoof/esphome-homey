@@ -1,9 +1,11 @@
 # Local Homey env (keep env.json.example)
 /env.json
 
-# Homey CLI build / compose output
+# Homey CLI build / compose output, all derived from .homeycompose
 /.homeybuild/
 /app.json
+/drivers/*/pair/
+/drivers/*/repair/
 
 # Homey Python runner (local/dev)
 /python-runner-dev.tar
@@ -14,17 +16,9 @@
 # Local helper scripts (not part of the Homey app)
 /scripts/
 
-# Copied from homey-esphomedriver during preprocess — do not commit
-/.homeycompose/capabilities/
-/.homeycompose/discovery/
-/.homeycompose/flow/
-/.homeycompose/drivers/templates/
-/.homeycompose/drivers/pair/
-/.homeycompose/drivers/repair/
-/assets/capabilities/
-/locales/
-/drivers/*/pair/
-/drivers/*/repair/
+# Everything esphome-homey writes is committed on purpose. It is copied from an
+# installed homey-esphomedriver, so a stale sync tool can silently downgrade the
+# pair/repair views; tracking it makes that show up as a diff before publishing.
 
 # Python
 __pycache__/

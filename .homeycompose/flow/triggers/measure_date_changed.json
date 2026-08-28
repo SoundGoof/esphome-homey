@@ -1,0 +1,47 @@
+{
+  "id": "measure_date_changed",
+  "title": {
+    "en": "The date changed",
+    "ar": "تغيّر التاريخ",
+    "da": "Datoen er ændret",
+    "de": "Das Datum hat sich geändert",
+    "es": "La fecha ha cambiado",
+    "fr": "La date a changé",
+    "it": "La data è cambiata",
+    "ko": "날짜가 변경됨",
+    "nl": "De datum is veranderd",
+    "no": "Datoen er endret",
+    "pl": "Data uległa zmianie",
+    "ru": "Дата изменилась",
+    "sv": "Datumet har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_date",
+      "title": {
+        "en": "Date",
+        "ar": "التاريخ",
+        "da": "Dato",
+        "de": "Datum",
+        "es": "Fecha",
+        "fr": "Date",
+        "it": "Data",
+        "ko": "날짜",
+        "nl": "Datum",
+        "no": "Dato",
+        "pl": "Data",
+        "ru": "Дата",
+        "sv": "Datum"
+      },
+      "type": "string",
+      "example": "2026-08-14"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_date"
+    }
+  ]
+}

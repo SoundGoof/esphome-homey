@@ -1,0 +1,66 @@
+{
+  "id": "esphome_select_is",
+  "title": {
+    "en": "A select option !{{is|is not}}",
+    "ar": "خيار Select !{{هو|ليس}}",
+    "da": "En Select-indstilling !{{er|er ikke}}",
+    "de": "Eine Select-Option !{{ist|ist nicht}}",
+    "es": "Una opción de Select !{{es|no es}}",
+    "fr": "Une option Select !{{est|n’est pas}}",
+    "it": "Un’opzione Select !{{è|non è}}",
+    "ko": "Select 옵션이 !{{임|아님}}",
+    "nl": "Een Select-optie !{{is|is niet}}",
+    "no": "Et Select-alternativ !{{er|er ikke}}",
+    "pl": "Opcja Select !{{jest|nie jest}}",
+    "ru": "Параметр Select !{{является|не является}}",
+    "sv": "Ett Select-alternativ !{{är|är inte}}"
+  },
+  "titleFormatted": {
+    "en": "[[name]] !{{is|is not}} [[esphome_select]]",
+    "ar": "[[name]] !{{هو|ليس}} [[esphome_select]]",
+    "da": "[[name]] !{{er|er ikke}} [[esphome_select]]",
+    "de": "[[name]] !{{ist|ist nicht}} [[esphome_select]]",
+    "es": "[[name]] !{{es|no es}} [[esphome_select]]",
+    "fr": "[[name]] !{{est|n’est pas}} [[esphome_select]]",
+    "it": "[[name]] !{{è|non è}} [[esphome_select]]",
+    "ko": "[[name]]이(가) [[esphome_select]]!{{임|아님}}",
+    "nl": "[[name]] !{{is|is niet}} [[esphome_select]]",
+    "no": "[[name]] !{{er|er ikke}} [[esphome_select]]",
+    "pl": "[[name]] !{{jest|nie jest}} [[esphome_select]]",
+    "ru": "[[name]] !{{является|не является}} [[esphome_select]]",
+    "sv": "[[name]] !{{är|är inte}} [[esphome_select]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_select"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "autocomplete"
+    },
+    {
+      "name": "esphome_select",
+      "title": {
+        "en": "Select"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

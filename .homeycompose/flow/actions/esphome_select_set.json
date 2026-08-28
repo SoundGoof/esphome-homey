@@ -1,0 +1,66 @@
+{
+  "id": "esphome_select_set",
+  "title": {
+    "en": "Set a select option to",
+    "ar": "اضبط خيار Select على",
+    "da": "Indstil en Select-indstilling til",
+    "de": "Select-Option setzen auf",
+    "es": "Establecer una opción de Select en",
+    "fr": "Définir une option Select sur",
+    "it": "Imposta un’opzione Select su",
+    "ko": "Select 옵션을 다음으로 설정",
+    "nl": "Zet een Select-optie op",
+    "no": "Sett et Select-alternativ til",
+    "pl": "Ustaw opcję Select na",
+    "ru": "Установить параметр Select на",
+    "sv": "Ställ in ett Select-alternativ till"
+  },
+  "titleFormatted": {
+    "en": "Set [[name]] to [[esphome_select]]",
+    "ar": "اضبط [[name]] على [[esphome_select]]",
+    "da": "Indstil [[name]] til [[esphome_select]]",
+    "de": "[[name]] setzen auf [[esphome_select]]",
+    "es": "Establecer [[name]] en [[esphome_select]]",
+    "fr": "Définir [[name]] sur [[esphome_select]]",
+    "it": "Imposta [[name]] su [[esphome_select]]",
+    "ko": "[[name]]을(를) [[esphome_select]](으)로 설정",
+    "nl": "Zet [[name]] op [[esphome_select]]",
+    "no": "Sett [[name]] til [[esphome_select]]",
+    "pl": "Ustaw [[name]] na [[esphome_select]]",
+    "ru": "Установить [[name]] на [[esphome_select]]",
+    "sv": "Ställ in [[name]] till [[esphome_select]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_select"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "autocomplete"
+    },
+    {
+      "name": "esphome_select",
+      "title": {
+        "en": "Select"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

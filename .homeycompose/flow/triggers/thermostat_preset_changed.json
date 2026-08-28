@@ -1,0 +1,59 @@
+{
+  "id": "thermostat_preset_changed",
+  "title": {
+    "en": "The preset changed to",
+    "ar": "تغيّر الإعداد المسبق إلى",
+    "da": "Forudindstillingen er ændret til",
+    "de": "Die Voreinstellung wurde geändert zu",
+    "es": "El preajuste ha cambiado a",
+    "fr": "Le préréglage a changé pour",
+    "it": "La preimpostazione è cambiata in",
+    "ko": "프리셋이 다음으로 변경됨",
+    "nl": "De voorinstelling is veranderd naar",
+    "no": "Forhåndsinnstillingen er endret til",
+    "pl": "Preset zmienił się na",
+    "ru": "Предустановка изменилась на",
+    "sv": "Förinställningen har ändrats till"
+  },
+  "titleFormatted": {
+    "en": "The preset changed to [[thermostat_preset]]",
+    "ar": "تغيّر الإعداد المسبق إلى [[thermostat_preset]]",
+    "da": "Forudindstillingen er ændret til [[thermostat_preset]]",
+    "de": "Die Voreinstellung wurde geändert zu [[thermostat_preset]]",
+    "es": "El preajuste ha cambiado a [[thermostat_preset]]",
+    "fr": "Le préréglage a changé pour [[thermostat_preset]]",
+    "it": "La preimpostazione è cambiata in [[thermostat_preset]]",
+    "ko": "프리셋이 [[thermostat_preset]](으)로 변경됨",
+    "nl": "De voorinstelling is veranderd naar [[thermostat_preset]]",
+    "no": "Forhåndsinnstillingen er endret til [[thermostat_preset]]",
+    "pl": "Preset zmienił się na [[thermostat_preset]]",
+    "ru": "Предустановка изменилась на [[thermostat_preset]]",
+    "sv": "Förinställningen har ändrats till [[thermostat_preset]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=thermostat_preset"
+    },
+    {
+      "name": "thermostat_preset",
+      "title": {
+        "en": "Preset",
+        "ar": "إعداد مسبق",
+        "da": "Forudindstilling",
+        "de": "Voreinstellung",
+        "es": "Preajuste",
+        "fr": "Préréglage",
+        "it": "Preimpostazione",
+        "ko": "프리셋",
+        "nl": "Voorinstelling",
+        "no": "Forhåndsinnstilling",
+        "pl": "Preset",
+        "ru": "Предустановка",
+        "sv": "Förinställning"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

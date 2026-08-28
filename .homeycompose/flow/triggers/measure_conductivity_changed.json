@@ -1,0 +1,47 @@
+{
+  "id": "measure_conductivity_changed",
+  "title": {
+    "en": "The conductivity changed",
+    "ar": "تغيّرت التوصيلية",
+    "da": "Ledningsevnen er ændret",
+    "de": "Die Leitfähigkeit hat sich geändert",
+    "es": "La conductividad ha cambiado",
+    "fr": "La conductivité a changé",
+    "it": "La conduttività è cambiata",
+    "ko": "전도도가 변경됨",
+    "nl": "De geleidbaarheid is veranderd",
+    "no": "Konduktiviteten er endret",
+    "pl": "Przewodność uległa zmianie",
+    "ru": "Проводимость изменилась",
+    "sv": "Konduktiviteten har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_conductivity",
+      "title": {
+        "en": "Conductivity",
+        "ar": "التوصيلية",
+        "da": "Ledningsevne",
+        "de": "Leitfähigkeit",
+        "es": "Conductividad",
+        "fr": "Conductivité",
+        "it": "Conduttività",
+        "ko": "전도도",
+        "nl": "Geleidbaarheid",
+        "no": "Konduktivitet",
+        "pl": "Przewodność",
+        "ru": "Проводимость",
+        "sv": "Konduktivitet"
+      },
+      "type": "number",
+      "example": 400
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_conductivity"
+    }
+  ]
+}

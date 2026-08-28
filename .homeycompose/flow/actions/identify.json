@@ -1,0 +1,25 @@
+{
+  "id": "identify",
+  "title": {
+    "en": "Identify the device",
+    "ar": "تعرّف على الجهاز",
+    "da": "Identificer enheden",
+    "de": "Gerät identifizieren",
+    "es": "Identificar el dispositivo",
+    "fr": "Identifier l’appareil",
+    "it": "Identifica il dispositivo",
+    "ko": "장치 식별",
+    "nl": "Identificeer het apparaat",
+    "no": "Identifiser enheten",
+    "pl": "Zidentyfikuj urządzenie",
+    "ru": "Идентифицировать устройство",
+    "sv": "Identifiera enheten"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=identify"
+    }
+  ]
+}

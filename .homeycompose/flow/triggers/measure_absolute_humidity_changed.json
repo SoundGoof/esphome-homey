@@ -1,0 +1,47 @@
+{
+  "id": "measure_absolute_humidity_changed",
+  "title": {
+    "en": "The absolute humidity changed",
+    "ar": "تغيّرت الرطوبة المطلقة",
+    "da": "Den absolutte luftfugtighed er ændret",
+    "de": "Die absolute Luftfeuchtigkeit hat sich geändert",
+    "es": "La humedad absoluta ha cambiado",
+    "fr": "L’humidité absolue a changé",
+    "it": "L’umidità assoluta è cambiata",
+    "ko": "절대 습도가 변경됨",
+    "nl": "De absolute luchtvochtigheid is veranderd",
+    "no": "Den absolutte luftfuktigheten er endret",
+    "pl": "Wilgotność bezwzględna uległa zmianie",
+    "ru": "Абсолютная влажность изменилась",
+    "sv": "Den absoluta luftfuktigheten har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_absolute_humidity",
+      "title": {
+        "en": "Absolute humidity",
+        "ar": "الرطوبة المطلقة",
+        "da": "Absolut luftfugtighed",
+        "de": "Absolute Luftfeuchtigkeit",
+        "es": "Humedad absoluta",
+        "fr": "Humidité absolue",
+        "it": "Umidità assoluta",
+        "ko": "절대 습도",
+        "nl": "Absolute luchtvochtigheid",
+        "no": "Absolutt luftfuktighet",
+        "pl": "Wilgotność bezwzględna",
+        "ru": "Абсолютная влажность",
+        "sv": "Absolut luftfuktighet"
+      },
+      "type": "number",
+      "example": 10
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_absolute_humidity"
+    }
+  ]
+}

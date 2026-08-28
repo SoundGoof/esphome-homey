@@ -1,0 +1,47 @@
+{
+  "id": "measure_nox_index_changed",
+  "title": {
+    "en": "The NOx index changed",
+    "ar": "تغيّر مؤشر NOx",
+    "da": "NOx-indekset er ændret",
+    "de": "Der NOx-Index hat sich geändert",
+    "es": "El índice NOx ha cambiado",
+    "fr": "L’indice NOx a changé",
+    "it": "L’indice NOx è cambiato",
+    "ko": "NOx 지수가 변경됨",
+    "nl": "De NOx-index is veranderd",
+    "no": "NOx-indeksen er endret",
+    "pl": "Indeks NOx uległ zmianie",
+    "ru": "Индекс NOx изменился",
+    "sv": "NOx-indexet har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_nox_index",
+      "title": {
+        "en": "NOx index",
+        "ar": "مؤشر NOx",
+        "da": "NOx-indeks",
+        "de": "NOx-Index",
+        "es": "Índice NOx",
+        "fr": "Indice NOx",
+        "it": "Indice NOx",
+        "ko": "NOx 지수",
+        "nl": "NOx-index",
+        "no": "NOx-indeks",
+        "pl": "Indeks NOx",
+        "ru": "Индекс NOx",
+        "sv": "NOx-index"
+      },
+      "type": "number",
+      "example": 1
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_nox_index"
+    }
+  ]
+}

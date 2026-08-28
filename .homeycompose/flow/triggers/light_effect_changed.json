@@ -1,0 +1,59 @@
+{
+  "id": "light_effect_changed",
+  "title": {
+    "en": "The light effect changed to",
+    "ar": "تغيّر تأثير الإضاءة إلى",
+    "da": "Lyseffekten er ændret til",
+    "de": "Der Lichteffekt wurde geändert zu",
+    "es": "El efecto de luz ha cambiado a",
+    "fr": "L’effet lumineux a changé pour",
+    "it": "L’effetto luce è cambiato in",
+    "ko": "조명 효과가 다음으로 변경됨",
+    "nl": "Het lichteffect is veranderd naar",
+    "no": "Lyseffekten er endret til",
+    "pl": "Efekt świetlny zmienił się na",
+    "ru": "Световой эффект изменился на",
+    "sv": "Ljuseffekten har ändrats till"
+  },
+  "titleFormatted": {
+    "en": "The light effect changed to [[light_effect]]",
+    "ar": "تغيّر تأثير الإضاءة إلى [[light_effect]]",
+    "da": "Lyseffekten er ændret til [[light_effect]]",
+    "de": "Der Lichteffekt wurde geändert zu [[light_effect]]",
+    "es": "El efecto de luz ha cambiado a [[light_effect]]",
+    "fr": "L’effet lumineux a changé pour [[light_effect]]",
+    "it": "L’effetto luce è cambiato in [[light_effect]]",
+    "ko": "조명 효과가 [[light_effect]](으)로 변경됨",
+    "nl": "Het lichteffect is veranderd naar [[light_effect]]",
+    "no": "Lyseffekten er endret til [[light_effect]]",
+    "pl": "Efekt świetlny zmienił się na [[light_effect]]",
+    "ru": "Световой эффект изменился на [[light_effect]]",
+    "sv": "Ljuseffekten har ändrats till [[light_effect]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=light_effect"
+    },
+    {
+      "name": "light_effect",
+      "title": {
+        "en": "Light effect",
+        "ar": "تأثير الإضاءة",
+        "da": "Lyseffekt",
+        "de": "Lichteffekt",
+        "es": "Efecto de luz",
+        "fr": "Effet lumineux",
+        "it": "Effetto luce",
+        "ko": "조명 효과",
+        "nl": "Lichteffect",
+        "no": "Lyseffekt",
+        "pl": "Efekt świetlny",
+        "ru": "Световой эффект",
+        "sv": "Ljuseffekt"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

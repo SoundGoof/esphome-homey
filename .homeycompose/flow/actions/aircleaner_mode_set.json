@@ -1,0 +1,109 @@
+{
+  "id": "aircleaner_mode_set",
+  "title": {
+    "en": "Set the air cleaner mode to",
+    "ar": "اضبط وضع منقّي الهواء على",
+    "da": "Indstil luftrensertilstand til",
+    "de": "Luftreiniger-Modus setzen auf",
+    "es": "Establecer el modo del purificador en",
+    "fr": "Régler le mode du purificateur sur",
+    "it": "Imposta la modalità del purificatore su",
+    "ko": "공기청정기 모드를 다음으로 설정",
+    "nl": "Zet de luchtreinigermodus op",
+    "no": "Sett luftrensermodus til",
+    "pl": "Ustaw tryb oczyszczacza na",
+    "ru": "Установить режим очистителя на",
+    "sv": "Ställ in luftrenarläge till"
+  },
+  "titleFormatted": {
+    "en": "Set the air cleaner mode to [[aircleaner_mode]]",
+    "ar": "اضبط وضع منقّي الهواء على [[aircleaner_mode]]",
+    "da": "Indstil luftrensertilstand til [[aircleaner_mode]]",
+    "de": "Luftreiniger-Modus setzen auf [[aircleaner_mode]]",
+    "es": "Establecer el modo del purificador en [[aircleaner_mode]]",
+    "fr": "Régler le mode du purificateur sur [[aircleaner_mode]]",
+    "it": "Imposta la modalità del purificatore su [[aircleaner_mode]]",
+    "ko": "공기청정기 모드를 [[aircleaner_mode]](으)로 설정",
+    "nl": "Zet de luchtreinigermodus op [[aircleaner_mode]]",
+    "no": "Sett luftrensermodus til [[aircleaner_mode]]",
+    "pl": "Ustaw tryb oczyszczacza na [[aircleaner_mode]]",
+    "ru": "Установить режим очистителя на [[aircleaner_mode]]",
+    "sv": "Ställ in luftrenarläge till [[aircleaner_mode]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=aircleaner_mode"
+    },
+    {
+      "name": "aircleaner_mode",
+      "title": {
+        "en": "Mode",
+        "ar": "الوضع",
+        "da": "Tilstand",
+        "de": "Modus",
+        "es": "Modo",
+        "fr": "Mode",
+        "it": "Modalità",
+        "ko": "모드",
+        "nl": "Modus",
+        "no": "Modus",
+        "pl": "Tryb",
+        "ru": "Режим",
+        "sv": "Läge"
+      },
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "fan",
+          "title": {
+            "en": "Fan",
+            "ar": "مروحة",
+            "da": "Ventilator",
+            "de": "Lüfter",
+            "es": "Ventilador",
+            "fr": "Ventilateur",
+            "it": "Ventilatore",
+            "ko": "팬",
+            "nl": "Ventilator",
+            "no": "Vifte",
+            "pl": "Wentylator",
+            "ru": "Вентилятор",
+            "sv": "Fläkt"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "silent",
+          "title": {
+            "en": "Silent",
+            "ar": "صامت",
+            "da": "Stille",
+            "de": "Leise",
+            "es": "Silencioso",
+            "fr": "Silencieux",
+            "it": "Silenzioso",
+            "ko": "조용히",
+            "nl": "Stil",
+            "no": "Stille",
+            "pl": "Cichy",
+            "ru": "Тихий",
+            "sv": "Tyst"
+          }
+        },
+        {
+          "id": "favorite",
+          "title": {
+            "en": "Favorite"
+          }
+        }
+      ]
+    }
+  ]
+}

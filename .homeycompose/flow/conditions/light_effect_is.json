@@ -1,0 +1,59 @@
+{
+  "id": "light_effect_is",
+  "title": {
+    "en": "The light effect !{{is|is not}}",
+    "ar": "تأثير الإضاءة !{{هو|ليس}}",
+    "da": "Lyseffekten !{{er|er ikke}}",
+    "de": "Der Lichteffekt !{{ist|ist nicht}}",
+    "es": "El efecto de luz !{{es|no es}}",
+    "fr": "L’effet lumineux !{{est|n’est pas}}",
+    "it": "L’effetto luce !{{è|non è}}",
+    "ko": "조명 효과가 !{{임|아님}}",
+    "nl": "Het lichteffect !{{is|is niet}}",
+    "no": "Lyseffekten !{{er|er ikke}}",
+    "pl": "Efekt świetlny !{{jest|nie jest}}",
+    "ru": "Световой эффект !{{является|не является}}",
+    "sv": "Ljuseffekten !{{är|är inte}}"
+  },
+  "titleFormatted": {
+    "en": "The light effect !{{is|is not}} [[light_effect]]",
+    "ar": "تأثير الإضاءة !{{هو|ليس}} [[light_effect]]",
+    "da": "Lyseffekten !{{er|er ikke}} [[light_effect]]",
+    "de": "Der Lichteffekt !{{ist|ist nicht}} [[light_effect]]",
+    "es": "El efecto de luz !{{es|no es}} [[light_effect]]",
+    "fr": "L’effet lumineux !{{est|n’est pas}} [[light_effect]]",
+    "it": "L’effetto luce !{{è|non è}} [[light_effect]]",
+    "ko": "조명 효과가 [[light_effect]]!{{임|아님}}",
+    "nl": "Het lichteffect !{{is|is niet}} [[light_effect]]",
+    "no": "Lyseffekten !{{er|er ikke}} [[light_effect]]",
+    "pl": "Efekt świetlny !{{jest|nie jest}} [[light_effect]]",
+    "ru": "Световой эффект !{{является|не является}} [[light_effect]]",
+    "sv": "Ljuseffekten !{{är|är inte}} [[light_effect]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=light_effect"
+    },
+    {
+      "name": "light_effect",
+      "title": {
+        "en": "Light effect",
+        "ar": "تأثير الإضاءة",
+        "da": "Lyseffekt",
+        "de": "Lichteffekt",
+        "es": "Efecto de luz",
+        "fr": "Effet lumineux",
+        "it": "Effetto luce",
+        "ko": "조명 효과",
+        "nl": "Lichteffect",
+        "no": "Lyseffekt",
+        "pl": "Efekt świetlny",
+        "ru": "Световой эффект",
+        "sv": "Ljuseffekt"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

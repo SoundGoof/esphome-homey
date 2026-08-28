@@ -1,0 +1,47 @@
+{
+  "id": "measure_dew_point_changed",
+  "title": {
+    "en": "The dew point changed",
+    "ar": "تغيّرت نقطة الندى",
+    "da": "Dugpunktet er ændret",
+    "de": "Der Taupunkt hat sich geändert",
+    "es": "El punto de rocío ha cambiado",
+    "fr": "Le point de rosée a changé",
+    "it": "Il punto di rugiada è cambiato",
+    "ko": "이슬점이 변경됨",
+    "nl": "Het dauwpunt is veranderd",
+    "no": "Duggpunktet er endret",
+    "pl": "Punkt rosy uległ zmianie",
+    "ru": "Точка росы изменилась",
+    "sv": "Daggpunkten har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_dew_point",
+      "title": {
+        "en": "Dew point",
+        "ar": "نقطة الندى",
+        "da": "Dugpunkt",
+        "de": "Taupunkt",
+        "es": "Punto de rocío",
+        "fr": "Point de rosée",
+        "it": "Punto di rugiada",
+        "ko": "이슬점",
+        "nl": "Dauwpunt",
+        "no": "Duggpunkt",
+        "pl": "Punkt rosy",
+        "ru": "Точка росы",
+        "sv": "Daggpunkt"
+      },
+      "type": "number",
+      "example": 12.5
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_dew_point"
+    }
+  ]
+}

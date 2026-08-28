@@ -1,0 +1,47 @@
+{
+  "id": "measure_area_changed",
+  "title": {
+    "en": "The area changed",
+    "ar": "تغيّرت المساحة",
+    "da": "Arealet er ændret",
+    "de": "Die Fläche hat sich geändert",
+    "es": "El área ha cambiado",
+    "fr": "La surface a changé",
+    "it": "L’area è cambiata",
+    "ko": "면적이 변경됨",
+    "nl": "De oppervlakte is veranderd",
+    "no": "Arealet er endret",
+    "pl": "Powierzchnia uległa zmianie",
+    "ru": "Площадь изменилась",
+    "sv": "Arean har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_area",
+      "title": {
+        "en": "Area",
+        "ar": "المساحة",
+        "da": "Areal",
+        "de": "Fläche",
+        "es": "Área",
+        "fr": "Surface",
+        "it": "Area",
+        "ko": "면적",
+        "nl": "Oppervlakte",
+        "no": "Areal",
+        "pl": "Powierzchnia",
+        "ru": "Площадь",
+        "sv": "Area"
+      },
+      "type": "number",
+      "example": 12.5
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_area"
+    }
+  ]
+}

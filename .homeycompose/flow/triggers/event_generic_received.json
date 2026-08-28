@@ -1,0 +1,67 @@
+{
+  "id": "event_generic_received",
+  "title": {
+    "en": "An event occurred",
+    "ar": "وقع حدث",
+    "da": "En begivenhed indtraf",
+    "de": "Ein Ereignis ist aufgetreten",
+    "es": "Ha ocurrido un evento",
+    "fr": "Un événement s’est produit",
+    "it": "Si è verificato un evento",
+    "ko": "이벤트가 발생함",
+    "nl": "Er is een evenement opgetreden",
+    "no": "En hendelse inntraff",
+    "pl": "Wystąpiło zdarzenie",
+    "ru": "Произошло событие",
+    "sv": "En händelse inträffade"
+  },
+  "tokens": [
+    {
+      "name": "event_generic",
+      "title": {
+        "en": "Event",
+        "ar": "حدث",
+        "da": "Begivenhed",
+        "de": "Ereignis",
+        "es": "Evento",
+        "fr": "Evénement",
+        "it": "Evento",
+        "ko": "이벤트",
+        "nl": "Evenement",
+        "no": "Hendelse",
+        "pl": "Zdarzenie",
+        "ru": "Событие",
+        "sv": "Händelse"
+      },
+      "type": "string",
+      "example": "Click"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Button 1"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=event_generic"
+    }
+  ]
+}

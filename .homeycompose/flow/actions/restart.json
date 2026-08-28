@@ -1,0 +1,25 @@
+{
+  "id": "restart",
+  "title": {
+    "en": "Restart the device",
+    "ar": "أعد تشغيل الجهاز",
+    "da": "Genstart enheden",
+    "de": "Gerät neu starten",
+    "es": "Reiniciar el dispositivo",
+    "fr": "Redémarrer l’appareil",
+    "it": "Riavvia il dispositivo",
+    "ko": "장치 재시작",
+    "nl": "Herstart het apparaat",
+    "no": "Start enheten på nytt",
+    "pl": "Uruchom ponownie urządzenie",
+    "ru": "Перезапустить устройство",
+    "sv": "Starta om enheten"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=restart"
+    }
+  ]
+}

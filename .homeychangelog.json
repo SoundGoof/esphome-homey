@@ -1,4 +1,7 @@
 {
+  "0.4.2": {
+    "en": "Fixed the outdated pairing and repair views"
+  },
   "0.4.1": {
     "en": "Fixed some bugs with the (re)pairing flow"
   },

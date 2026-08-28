@@ -1,0 +1,47 @@
+{
+  "id": "measure_apparent_power_changed",
+  "title": {
+    "en": "The apparent power changed",
+    "ar": "تغيّرت القدرة الظاهرية",
+    "da": "Den tilsyneladende effekt er ændret",
+    "de": "Die Scheinleistung hat sich geändert",
+    "es": "La potencia aparente ha cambiado",
+    "fr": "La puissance apparente a changé",
+    "it": "La potenza apparente è cambiata",
+    "ko": "피상 전력이 변경됨",
+    "nl": "Het schijnbaar vermogen is veranderd",
+    "no": "Den tilsynelatende effekten er endret",
+    "pl": "Moc pozorna uległa zmianie",
+    "ru": "Полная мощность изменилась",
+    "sv": "Den skenbara effekten har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_apparent_power",
+      "title": {
+        "en": "Apparent power",
+        "ar": "القدرة الظاهرية",
+        "da": "Tilsyneladende effekt",
+        "de": "Scheinleistung",
+        "es": "Potencia aparente",
+        "fr": "Puissance apparente",
+        "it": "Potenza apparente",
+        "ko": "피상 전력",
+        "nl": "Schijnbaar vermogen",
+        "no": "Tilsynelatende effekt",
+        "pl": "Moc pozorna",
+        "ru": "Полная мощность",
+        "sv": "Skenbar effekt"
+      },
+      "type": "number",
+      "example": 100
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_apparent_power"
+    }
+  ]
+}

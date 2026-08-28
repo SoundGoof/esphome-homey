@@ -1,0 +1,109 @@
+{
+  "id": "aircleaner_mode_is",
+  "title": {
+    "en": "The air cleaner mode !{{is|is not}}",
+    "ar": "وضع منقّي الهواء !{{هو|ليس}}",
+    "da": "Luftrensertilstanden !{{er|er ikke}}",
+    "de": "Der Luftreiniger-Modus !{{ist|ist nicht}}",
+    "es": "El modo del purificador !{{es|no es}}",
+    "fr": "Le mode du purificateur !{{est|n’est pas}}",
+    "it": "La modalità del purificatore !{{è|non è}}",
+    "ko": "공기청정기 모드가 !{{임|아님}}",
+    "nl": "De luchtreinigermodus !{{is|is niet}}",
+    "no": "Luftrensermodus !{{er|er ikke}}",
+    "pl": "Tryb oczyszczacza !{{jest|nie jest}}",
+    "ru": "Режим очистителя !{{является|не является}}",
+    "sv": "Luftrenarläget !{{är|är inte}}"
+  },
+  "titleFormatted": {
+    "en": "The air cleaner mode !{{is|is not}} [[aircleaner_mode]]",
+    "ar": "وضع منقّي الهواء !{{هو|ليس}} [[aircleaner_mode]]",
+    "da": "Luftrensertilstanden !{{er|er ikke}} [[aircleaner_mode]]",
+    "de": "Der Luftreiniger-Modus !{{ist|ist nicht}} [[aircleaner_mode]]",
+    "es": "El modo del purificador !{{es|no es}} [[aircleaner_mode]]",
+    "fr": "Le mode du purificateur !{{est|n’est pas}} [[aircleaner_mode]]",
+    "it": "La modalità del purificatore !{{è|non è}} [[aircleaner_mode]]",
+    "ko": "공기청정기 모드가 [[aircleaner_mode]]!{{임|아님}}",
+    "nl": "De luchtreinigermodus !{{is|is niet}} [[aircleaner_mode]]",
+    "no": "Luftrensermodus !{{er|er ikke}} [[aircleaner_mode]]",
+    "pl": "Tryb oczyszczacza !{{jest|nie jest}} [[aircleaner_mode]]",
+    "ru": "Режим очистителя !{{является|не является}} [[aircleaner_mode]]",
+    "sv": "Luftrenarläget !{{är|är inte}} [[aircleaner_mode]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=aircleaner_mode"
+    },
+    {
+      "name": "aircleaner_mode",
+      "title": {
+        "en": "Mode",
+        "ar": "الوضع",
+        "da": "Tilstand",
+        "de": "Modus",
+        "es": "Modo",
+        "fr": "Mode",
+        "it": "Modalità",
+        "ko": "모드",
+        "nl": "Modus",
+        "no": "Modus",
+        "pl": "Tryb",
+        "ru": "Режим",
+        "sv": "Läge"
+      },
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "fan",
+          "title": {
+            "en": "Fan",
+            "ar": "مروحة",
+            "da": "Ventilator",
+            "de": "Lüfter",
+            "es": "Ventilador",
+            "fr": "Ventilateur",
+            "it": "Ventilatore",
+            "ko": "팬",
+            "nl": "Ventilator",
+            "no": "Vifte",
+            "pl": "Wentylator",
+            "ru": "Вентилятор",
+            "sv": "Fläkt"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "silent",
+          "title": {
+            "en": "Silent",
+            "ar": "صامت",
+            "da": "Stille",
+            "de": "Leise",
+            "es": "Silencioso",
+            "fr": "Silencieux",
+            "it": "Silenzioso",
+            "ko": "조용히",
+            "nl": "Stil",
+            "no": "Stille",
+            "pl": "Cichy",
+            "ru": "Тихий",
+            "sv": "Tyst"
+          }
+        },
+        {
+          "id": "favorite",
+          "title": {
+            "en": "Favorite"
+          }
+        }
+      ]
+    }
+  ]
+}

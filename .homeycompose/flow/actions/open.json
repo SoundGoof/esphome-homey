@@ -1,0 +1,25 @@
+{
+  "id": "open",
+  "title": {
+    "en": "Open Door",
+    "ar": "فتح الباب",
+    "da": "Åbn dør",
+    "de": "Tür öffnen",
+    "es": "Abrir puerta",
+    "fr": "Ouvrir la porte",
+    "it": "Apri porta",
+    "ko": "문 열기",
+    "nl": "Deur openen",
+    "no": "Åpne dør",
+    "pl": "Otwórz drzwi",
+    "ru": "Открыть дверь",
+    "sv": "Öppna dörr"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=open"
+    }
+  ]
+}

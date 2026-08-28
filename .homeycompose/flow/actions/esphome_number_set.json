@@ -1,0 +1,78 @@
+{
+  "id": "esphome_number_set",
+  "title": {
+    "en": "Set a number value to",
+    "ar": "اضبط قيمة رقمية على",
+    "da": "Indstil en talværdi til",
+    "de": "Zahlenwert setzen auf",
+    "es": "Establecer un valor numérico en",
+    "fr": "Définir une valeur numérique sur",
+    "it": "Imposta un valore numerico su",
+    "ko": "숫자 값을 다음으로 설정",
+    "nl": "Zet een nummerwaarde op",
+    "no": "Sett en tallverdi til",
+    "pl": "Ustaw wartość liczbową na",
+    "ru": "Установить числовое значение на",
+    "sv": "Ställ in ett nummervärde till"
+  },
+  "titleFormatted": {
+    "en": "Set [[name]] to [[esphome_number]]",
+    "ar": "اضبط [[name]] على [[esphome_number]]",
+    "da": "Indstil [[name]] til [[esphome_number]]",
+    "de": "[[name]] setzen auf [[esphome_number]]",
+    "es": "Establecer [[name]] en [[esphome_number]]",
+    "fr": "Définir [[name]] sur [[esphome_number]]",
+    "it": "Imposta [[name]] su [[esphome_number]]",
+    "ko": "[[name]]을(를) [[esphome_number]](으)로 설정",
+    "nl": "Zet [[name]] op [[esphome_number]]",
+    "no": "Sett [[name]] til [[esphome_number]]",
+    "pl": "Ustaw [[name]] na [[esphome_number]]",
+    "ru": "Установить [[name]] на [[esphome_number]]",
+    "sv": "Ställ in [[name]] till [[esphome_number]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_number"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "autocomplete"
+    },
+    {
+      "name": "esphome_number",
+      "title": {
+        "en": "Number",
+        "ar": "رقم",
+        "da": "Tal",
+        "de": "Nummer",
+        "es": "Número",
+        "fr": "Nombre",
+        "it": "Numero",
+        "ko": "숫자",
+        "nl": "Nummer",
+        "no": "Tall",
+        "pl": "Liczba",
+        "ru": "Число",
+        "sv": "Nummer"
+      },
+      "type": "number"
+    }
+  ]
+}

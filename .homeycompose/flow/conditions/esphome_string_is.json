@@ -1,0 +1,78 @@
+{
+  "id": "esphome_string_is",
+  "title": {
+    "en": "A text value !{{is|is not}}",
+    "ar": "قيمة نصية !{{هي|ليست}}",
+    "da": "En tekstværdi !{{er|er ikke}}",
+    "de": "Ein Textwert !{{ist|ist nicht}}",
+    "es": "Un valor de texto !{{es|no es}}",
+    "fr": "Une valeur texte !{{est|n’est pas}}",
+    "it": "Un valore di testo !{{è|non è}}",
+    "ko": "텍스트 값이 !{{임|아님}}",
+    "nl": "Een tekstwaarde !{{is|is niet}}",
+    "no": "En tekstverdi !{{er|er ikke}}",
+    "pl": "Wartość tekstowa !{{jest|nie jest}}",
+    "ru": "Текстовое значение !{{является|не является}}",
+    "sv": "Ett textvärde !{{är|är inte}}"
+  },
+  "titleFormatted": {
+    "en": "[[name]] !{{is|is not}} [[esphome_string]]",
+    "ar": "[[name]] !{{هو|ليس}} [[esphome_string]]",
+    "da": "[[name]] !{{er|er ikke}} [[esphome_string]]",
+    "de": "[[name]] !{{ist|ist nicht}} [[esphome_string]]",
+    "es": "[[name]] !{{es|no es}} [[esphome_string]]",
+    "fr": "[[name]] !{{est|n’est pas}} [[esphome_string]]",
+    "it": "[[name]] !{{è|non è}} [[esphome_string]]",
+    "ko": "[[name]]이(가) [[esphome_string]]!{{임|아님}}",
+    "nl": "[[name]] !{{is|is niet}} [[esphome_string]]",
+    "no": "[[name]] !{{er|er ikke}} [[esphome_string]]",
+    "pl": "[[name]] !{{jest|nie jest}} [[esphome_string]]",
+    "ru": "[[name]] !{{является|не является}} [[esphome_string]]",
+    "sv": "[[name]] !{{är|är inte}} [[esphome_string]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_string"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "autocomplete"
+    },
+    {
+      "name": "esphome_string",
+      "title": {
+        "en": "Text",
+        "ar": "نص",
+        "da": "Tekst",
+        "de": "Text",
+        "es": "Texto",
+        "fr": "Texte",
+        "it": "Testo",
+        "ko": "텍스트",
+        "nl": "Tekst",
+        "no": "Tekst",
+        "pl": "Tekst",
+        "ru": "Текст",
+        "sv": "Text"
+      },
+      "type": "text"
+    }
+  ]
+}

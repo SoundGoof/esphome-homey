@@ -1,0 +1,25 @@
+{
+  "id": "alarm_triggered_true",
+  "title": {
+    "en": "The home alarm is triggered",
+    "ar": "يتم تشغيل إنذار المنزل",
+    "da": "Husalarmen udløses",
+    "de": "Die Alarmanlage wird ausgelöst",
+    "es": "La alarma del hogar se dispara",
+    "fr": "L’alarme maison se déclenche",
+    "it": "L’allarme casa si attiva",
+    "ko": "홈 알람이 울림",
+    "nl": "Het huisalarm gaat af",
+    "no": "Husalarmen utløses",
+    "pl": "Alarm domowy zostaje uruchomiony",
+    "ru": "Домашняя сигнализация срабатывает",
+    "sv": "Hemlarmet utlöses"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=alarm_triggered"
+    }
+  ]
+}

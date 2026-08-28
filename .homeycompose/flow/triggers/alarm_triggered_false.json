@@ -1,0 +1,25 @@
+{
+  "id": "alarm_triggered_false",
+  "title": {
+    "en": "The home alarm is no longer triggered",
+    "ar": "لم يعد إنذار المنزل يعمل",
+    "da": "Husalarmen udløses ikke længere",
+    "de": "Die Alarmanlage wird nicht mehr ausgelöst",
+    "es": "La alarma del hogar ya no se dispara",
+    "fr": "L’alarme maison ne se déclenche plus",
+    "it": "L’allarme casa non è più attivo",
+    "ko": "홈 알람이 더 이상 울리지 않음",
+    "nl": "Het huisalarm gaat niet langer af",
+    "no": "Husalarmen utløses ikke lenger",
+    "pl": "Alarm domowy nie jest już uruchomiony",
+    "ru": "Домашняя сигнализация больше не срабатывает",
+    "sv": "Hemlarmet utlöses inte längre"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=alarm_triggered"
+    }
+  ]
+}

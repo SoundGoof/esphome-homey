@@ -1,0 +1,47 @@
+{
+  "id": "measure_irradiance_changed",
+  "title": {
+    "en": "The irradiance changed",
+    "ar": "تغيّر الإشعاع",
+    "da": "Irradiansen er ændret",
+    "de": "Die Bestrahlungsstärke hat sich geändert",
+    "es": "La irradiancia ha cambiado",
+    "fr": "L’irradiance a changé",
+    "it": "L’irradianza è cambiata",
+    "ko": "일사량이 변경됨",
+    "nl": "De instraling is veranderd",
+    "no": "Irradiansen er endret",
+    "pl": "Natężenie napromieniowania uległo zmianie",
+    "ru": "Облучённость изменилась",
+    "sv": "Irradiansen har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_irradiance",
+      "title": {
+        "en": "Irradiance",
+        "ar": "الإشعاع",
+        "da": "Irradians",
+        "de": "Bestrahlungsstärke",
+        "es": "Irradiancia",
+        "fr": "Irradiance",
+        "it": "Irradianza",
+        "ko": "일사량",
+        "nl": "Instraling",
+        "no": "Irradians",
+        "pl": "Natężenie napromieniowania",
+        "ru": "Облучённость",
+        "sv": "Irradians"
+      },
+      "type": "number",
+      "example": 800
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_irradiance"
+    }
+  ]
+}

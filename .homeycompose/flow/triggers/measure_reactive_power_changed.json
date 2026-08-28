@@ -1,0 +1,47 @@
+{
+  "id": "measure_reactive_power_changed",
+  "title": {
+    "en": "The reactive power changed",
+    "ar": "تغيّرت القدرة التفاعلية",
+    "da": "Den reaktive effekt er ændret",
+    "de": "Die Blindleistung hat sich geändert",
+    "es": "La potencia reactiva ha cambiado",
+    "fr": "La puissance réactive a changé",
+    "it": "La potenza reattiva è cambiata",
+    "ko": "무효 전력이 변경됨",
+    "nl": "Het blindvermogen is veranderd",
+    "no": "Den reaktive effekten er endret",
+    "pl": "Moc bierna uległa zmianie",
+    "ru": "Реактивная мощность изменилась",
+    "sv": "Den reaktiva effekten har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_reactive_power",
+      "title": {
+        "en": "Reactive power",
+        "ar": "القدرة التفاعلية",
+        "da": "Reaktiv effekt",
+        "de": "Blindleistung",
+        "es": "Potencia reactiva",
+        "fr": "Puissance réactive",
+        "it": "Potenza reattiva",
+        "ko": "무효 전력",
+        "nl": "Blindvermogen",
+        "no": "Reaktiv effekt",
+        "pl": "Moc bierna",
+        "ru": "Реактивная мощность",
+        "sv": "Reaktiv effekt"
+      },
+      "type": "number",
+      "example": 50
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_reactive_power"
+    }
+  ]
+}

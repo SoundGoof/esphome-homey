@@ -1,0 +1,67 @@
+{
+  "id": "esphome_number_changed",
+  "title": {
+    "en": "A number value changed",
+    "ar": "تغيّرت قيمة رقمية",
+    "da": "En talværdi er ændret",
+    "de": "Ein Zahlenwert hat sich geändert",
+    "es": "Un valor numérico ha cambiado",
+    "fr": "Une valeur numérique a changé",
+    "it": "Un valore numerico è cambiato",
+    "ko": "숫자 값이 변경됨",
+    "nl": "Een nummerwaarde is veranderd",
+    "no": "En tallverdi er endret",
+    "pl": "Wartość liczbowa uległa zmianie",
+    "ru": "Числовое значение изменилось",
+    "sv": "Ett nummervärde har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "esphome_number",
+      "title": {
+        "en": "Number",
+        "ar": "رقم",
+        "da": "Tal",
+        "de": "Nummer",
+        "es": "Número",
+        "fr": "Nombre",
+        "it": "Numero",
+        "ko": "숫자",
+        "nl": "Nummer",
+        "no": "Tall",
+        "pl": "Liczba",
+        "ru": "Число",
+        "sv": "Nummer"
+      },
+      "type": "number",
+      "example": 42
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Sensor"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_number"
+    }
+  ]
+}

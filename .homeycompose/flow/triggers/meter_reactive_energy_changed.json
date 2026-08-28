@@ -1,0 +1,47 @@
+{
+  "id": "meter_reactive_energy_changed",
+  "title": {
+    "en": "The reactive energy meter changed",
+    "ar": "تغيّر عدّاد الطاقة التفاعلية",
+    "da": "Den reaktive energimåler er ændret",
+    "de": "Der Blindenergiezähler hat sich geändert",
+    "es": "El contador de energía reactiva ha cambiado",
+    "fr": "Le compteur d’énergie réactive a changé",
+    "it": "Il contatore di energia reattiva è cambiato",
+    "ko": "무효 에너지 미터가 변경됨",
+    "nl": "De blindenergiemeter is veranderd",
+    "no": "Den reaktive energimåleren er endret",
+    "pl": "Licznik energii biernej uległ zmianie",
+    "ru": "Счётчик реактивной энергии изменился",
+    "sv": "Den reaktiva energimätaren har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "meter_reactive_energy",
+      "title": {
+        "en": "Reactive energy",
+        "ar": "الطاقة التفاعلية",
+        "da": "Reaktiv energi",
+        "de": "Blindenergie",
+        "es": "Energía reactiva",
+        "fr": "Énergie réactive",
+        "it": "Energia reattiva",
+        "ko": "무효 에너지",
+        "nl": "Blindenergie",
+        "no": "Reaktiv energi",
+        "pl": "Energia bierna",
+        "ru": "Реактивная энергия",
+        "sv": "Reaktiv energi"
+      },
+      "type": "number",
+      "example": 1.5
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=meter_reactive_energy"
+    }
+  ]
+}

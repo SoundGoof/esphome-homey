@@ -1,0 +1,47 @@
+{
+  "id": "alarm_doorbell_received",
+  "title": {
+    "en": "Someone rang the doorbell",
+    "ar": "شخص ما رن جرس الباب",
+    "da": "Nogen ringede på dørklokken",
+    "de": "Jemand hat geklingelt",
+    "es": "Alguien ha llamado al timbre",
+    "fr": "Quelqu’un a sonné à la porte",
+    "it": "Qualcuno ha suonato il campanello",
+    "ko": "누가 초인종을 눌렀음",
+    "nl": "Iemand heeft aangebeld",
+    "no": "Noen ringte på døren",
+    "pl": "Ktoś zadzwonił do drzwi",
+    "ru": "Кто-то позвонил в дверь",
+    "sv": "Någon ringde på dörren"
+  },
+  "tokens": [
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Front door"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=alarm_doorbell"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "esphome_select_changed",
+  "title": {
+    "en": "A select option changed",
+    "ar": "تغيّر خيار Select",
+    "da": "En Select-indstilling er ændret",
+    "de": "Eine Select-Option hat sich geändert",
+    "es": "Una opción de Select ha cambiado",
+    "fr": "Une option Select a changé",
+    "it": "Un’opzione Select è cambiata",
+    "ko": "Select 옵션이 변경됨",
+    "nl": "Een Select-optie is veranderd",
+    "no": "Et Select-alternativ er endret",
+    "pl": "Opcja Select uległa zmianie",
+    "ru": "Параметр Select изменился",
+    "sv": "Ett Select-alternativ har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "esphome_select",
+      "title": {
+        "en": "Select"
+      },
+      "type": "string",
+      "example": "Auto"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Mode"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_select"
+    }
+  ]
+}

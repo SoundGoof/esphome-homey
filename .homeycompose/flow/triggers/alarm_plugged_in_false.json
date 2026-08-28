@@ -1,0 +1,25 @@
+{
+  "id": "alarm_plugged_in_false",
+  "title": {
+    "en": "The plugged in alarm turned off",
+    "ar": "تم إيقاف إنذار التوصيل",
+    "da": "Tilsluttet-alarmen blev slukket",
+    "de": "Der Eingesteckt-Alarm wurde ausgeschaltet",
+    "es": "La alarma de enchufado se ha desactivado",
+    "fr": "L’alarme branché s’est désactivée",
+    "it": "L’allarme collegato si è disattivato",
+    "ko": "연결됨 알람이 꺼짐",
+    "nl": "Het ingeplugd alarm gaat uit",
+    "no": "Tilkoblet-alarmen ble slått av",
+    "pl": "Alarm podłączenia wyłączył się",
+    "ru": "Сигнал «подключено» выключился",
+    "sv": "Inkopplad-larmet slogs av"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=alarm_plugged_in"
+    }
+  ]
+}

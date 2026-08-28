@@ -1,0 +1,59 @@
+{
+  "id": "thermostat_preset_set",
+  "title": {
+    "en": "Set the preset to",
+    "ar": "اضبط الإعداد المسبق على",
+    "da": "Indstil forudindstilling til",
+    "de": "Voreinstellung setzen auf",
+    "es": "Establecer el preajuste en",
+    "fr": "Régler le préréglage sur",
+    "it": "Imposta la preimpostazione su",
+    "ko": "프리셋을 다음으로 설정",
+    "nl": "Zet de voorinstelling op",
+    "no": "Sett forhåndsinnstilling til",
+    "pl": "Ustaw preset na",
+    "ru": "Установить предустановку на",
+    "sv": "Ställ in förinställningen till"
+  },
+  "titleFormatted": {
+    "en": "Set the preset to [[thermostat_preset]]",
+    "ar": "اضبط الإعداد المسبق على [[thermostat_preset]]",
+    "da": "Indstil forudindstilling til [[thermostat_preset]]",
+    "de": "Voreinstellung setzen auf [[thermostat_preset]]",
+    "es": "Establecer el preajuste en [[thermostat_preset]]",
+    "fr": "Régler le préréglage sur [[thermostat_preset]]",
+    "it": "Imposta la preimpostazione su [[thermostat_preset]]",
+    "ko": "프리셋을 [[thermostat_preset]](으)로 설정",
+    "nl": "Zet de voorinstelling op [[thermostat_preset]]",
+    "no": "Sett forhåndsinnstilling til [[thermostat_preset]]",
+    "pl": "Ustaw preset na [[thermostat_preset]]",
+    "ru": "Установить предустановку на [[thermostat_preset]]",
+    "sv": "Ställ in förinställningen till [[thermostat_preset]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=thermostat_preset"
+    },
+    {
+      "name": "thermostat_preset",
+      "title": {
+        "en": "Preset",
+        "ar": "إعداد مسبق",
+        "da": "Forudindstilling",
+        "de": "Voreinstellung",
+        "es": "Preajuste",
+        "fr": "Préréglage",
+        "it": "Preimpostazione",
+        "ko": "프리셋",
+        "nl": "Voorinstelling",
+        "no": "Forhåndsinnstilling",
+        "pl": "Preset",
+        "ru": "Предустановка",
+        "sv": "Förinställning"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

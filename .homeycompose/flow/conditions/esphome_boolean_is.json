@@ -1,0 +1,59 @@
+{
+  "id": "esphome_boolean_is",
+  "title": {
+    "en": "A boolean is !{{true|false}}",
+    "ar": "الـ boolean !{{صحيح|خاطئ}}",
+    "da": "En boolean er !{{sand|falsk}}",
+    "de": "Ein Boolean ist !{{wahr|falsch}}",
+    "es": "Un booleano es !{{verdadero|falso}}",
+    "fr": "Un booléen est !{{vrai|faux}}",
+    "it": "Un booleano è !{{vero|falso}}",
+    "ko": "boolean이 !{{true|false}}",
+    "nl": "Een boolean is !{{waar|onwaar}}",
+    "no": "En boolean er !{{sann|usann}}",
+    "pl": "Wartość boolean jest !{{prawdziwa|fałszywa}}",
+    "ru": "Boolean !{{истинен|ложен}}",
+    "sv": "En boolean är !{{sann|falsk}}"
+  },
+  "titleFormatted": {
+    "en": "[[name]] is !{{true|false}}",
+    "ar": "[[name]] !{{صحيح|خاطئ}}",
+    "da": "[[name]] er !{{sand|falsk}}",
+    "de": "[[name]] ist !{{wahr|falsch}}",
+    "es": "[[name]] es !{{verdadero|falso}}",
+    "fr": "[[name]] est !{{vrai|faux}}",
+    "it": "[[name]] è !{{vero|falso}}",
+    "ko": "[[name]]이(가) !{{true|false}}",
+    "nl": "[[name]] is !{{waar|onwaar}}",
+    "no": "[[name]] er !{{sann|usann}}",
+    "pl": "[[name]] jest !{{prawdziwe|fałszywe}}",
+    "ru": "[[name]] !{{истинно|ложно}}",
+    "sv": "[[name]] är !{{sann|falsk}}"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_boolean"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

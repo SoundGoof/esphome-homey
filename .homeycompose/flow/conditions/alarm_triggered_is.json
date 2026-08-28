@@ -1,0 +1,25 @@
+{
+  "id": "alarm_triggered_is",
+  "title": {
+    "en": "The home alarm is !{{triggered|not triggered}}",
+    "ar": "إنذار المنزل !{{مُفعّل|غير مُفعّل}}",
+    "da": "Husalarmen er !{{udløst|ikke udløst}}",
+    "de": "Die Alarmanlage ist !{{ausgelöst|nicht ausgelöst}}",
+    "es": "La alarma del hogar está !{{activada|no activada}}",
+    "fr": "L’alarme maison est !{{déclenchée|non déclenchée}}",
+    "it": "L’allarme casa è !{{attivato|non attivato}}",
+    "ko": "홈 알람이 !{{울림|울리지 않음}}",
+    "nl": "Het huisalarm is !{{geactiveerd|niet geactiveerd}}",
+    "no": "Husalarmen er !{{utløst|ikke utløst}}",
+    "pl": "Alarm domowy jest !{{uruchomiony|nieuruchomiony}}",
+    "ru": "Домашняя сигнализация !{{сработала|не сработала}}",
+    "sv": "Hemlarmet är !{{utlöst|inte utlöst}}"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=alarm_triggered"
+    }
+  ]
+}

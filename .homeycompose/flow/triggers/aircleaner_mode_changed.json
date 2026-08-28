@@ -1,0 +1,109 @@
+{
+  "id": "aircleaner_mode_changed",
+  "title": {
+    "en": "The air cleaner mode changed to",
+    "ar": "تغيّر وضع منقّي الهواء إلى",
+    "da": "Luftrensertilstanden er ændret til",
+    "de": "Der Luftreiniger-Modus wurde geändert zu",
+    "es": "El modo del purificador ha cambiado a",
+    "fr": "Le mode du purificateur a changé pour",
+    "it": "La modalità del purificatore è cambiata in",
+    "ko": "공기청정기 모드가 다음으로 변경됨",
+    "nl": "De luchtreinigermodus is veranderd naar",
+    "no": "Luftrensermodus er endret til",
+    "pl": "Tryb oczyszczacza zmienił się na",
+    "ru": "Режим очистителя изменился на",
+    "sv": "Luftrenarläget har ändrats till"
+  },
+  "titleFormatted": {
+    "en": "The air cleaner mode changed to [[aircleaner_mode]]",
+    "ar": "تغيّر وضع منقّي الهواء إلى [[aircleaner_mode]]",
+    "da": "Luftrensertilstanden er ændret til [[aircleaner_mode]]",
+    "de": "Der Luftreiniger-Modus wurde geändert zu [[aircleaner_mode]]",
+    "es": "El modo del purificador ha cambiado a [[aircleaner_mode]]",
+    "fr": "Le mode du purificateur a changé pour [[aircleaner_mode]]",
+    "it": "La modalità del purificatore è cambiata in [[aircleaner_mode]]",
+    "ko": "공기청정기 모드가 [[aircleaner_mode]](으)로 변경됨",
+    "nl": "De luchtreinigermodus is veranderd naar [[aircleaner_mode]]",
+    "no": "Luftrensermodus er endret til [[aircleaner_mode]]",
+    "pl": "Tryb oczyszczacza zmienił się na [[aircleaner_mode]]",
+    "ru": "Режим очистителя изменился на [[aircleaner_mode]]",
+    "sv": "Luftrenarläget har ändrats till [[aircleaner_mode]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=aircleaner_mode"
+    },
+    {
+      "name": "aircleaner_mode",
+      "title": {
+        "en": "Mode",
+        "ar": "الوضع",
+        "da": "Tilstand",
+        "de": "Modus",
+        "es": "Modo",
+        "fr": "Mode",
+        "it": "Modalità",
+        "ko": "모드",
+        "nl": "Modus",
+        "no": "Modus",
+        "pl": "Tryb",
+        "ru": "Режим",
+        "sv": "Läge"
+      },
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "fan",
+          "title": {
+            "en": "Fan",
+            "ar": "مروحة",
+            "da": "Ventilator",
+            "de": "Lüfter",
+            "es": "Ventilador",
+            "fr": "Ventilateur",
+            "it": "Ventilatore",
+            "ko": "팬",
+            "nl": "Ventilator",
+            "no": "Vifte",
+            "pl": "Wentylator",
+            "ru": "Вентилятор",
+            "sv": "Fläkt"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "silent",
+          "title": {
+            "en": "Silent",
+            "ar": "صامت",
+            "da": "Stille",
+            "de": "Leise",
+            "es": "Silencioso",
+            "fr": "Silencieux",
+            "it": "Silenzioso",
+            "ko": "조용히",
+            "nl": "Stil",
+            "no": "Stille",
+            "pl": "Cichy",
+            "ru": "Тихий",
+            "sv": "Tyst"
+          }
+        },
+        {
+          "id": "favorite",
+          "title": {
+            "en": "Favorite"
+          }
+        }
+      ]
+    }
+  ]
+}

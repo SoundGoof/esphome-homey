@@ -1,0 +1,67 @@
+{
+  "id": "event_button_received",
+  "title": {
+    "en": "A button was pressed",
+    "ar": "تم الضغط على زر",
+    "da": "Der blev trykket på en knap",
+    "de": "Ein Knopf wurde gedrückt",
+    "es": "Se ha pulsado un botón",
+    "fr": "Un bouton a été enfoncé",
+    "it": "È stato premuto un pulsante",
+    "ko": "버튼 눌림",
+    "nl": "Een knop werd ingedrukt",
+    "no": "En knapp ble trykket inn",
+    "pl": "Któryś przycisk został naciśnięty",
+    "ru": "Одна из кнопок нажата",
+    "sv": "En knapp trycktes in"
+  },
+  "tokens": [
+    {
+      "name": "event_button",
+      "title": {
+        "en": "Event",
+        "ar": "حدث",
+        "da": "Begivenhed",
+        "de": "Ereignis",
+        "es": "Evento",
+        "fr": "Evénement",
+        "it": "Evento",
+        "ko": "이벤트",
+        "nl": "Evenement",
+        "no": "Hendelse",
+        "pl": "Zdarzenie",
+        "ru": "Событие",
+        "sv": "Händelse"
+      },
+      "type": "string",
+      "example": "Click"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Button 1"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=event_button"
+    }
+  ]
+}

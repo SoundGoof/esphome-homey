@@ -1,0 +1,35 @@
+{
+  "id": "measure_pm4_changed",
+  "title": {
+    "en": "The PM4 value changed",
+    "ar": "تغيّرت قيمة PM4",
+    "da": "PM4-værdien er ændret",
+    "de": "Der PM4-Wert hat sich geändert",
+    "es": "El valor de PM4 ha cambiado",
+    "fr": "La valeur PM4 a changé",
+    "it": "Il valore PM4 è cambiato",
+    "ko": "PM4 값이 변경됨",
+    "nl": "De PM4-waarde is veranderd",
+    "no": "PM4-verdien er endret",
+    "pl": "Wartość PM4 uległa zmianie",
+    "ru": "Значение PM4 изменилось",
+    "sv": "PM4-värdet har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_pm4",
+      "title": {
+        "en": "PM4"
+      },
+      "type": "number",
+      "example": 2
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_pm4"
+    }
+  ]
+}

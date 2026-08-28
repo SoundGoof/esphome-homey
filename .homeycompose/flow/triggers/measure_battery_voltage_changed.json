@@ -1,0 +1,47 @@
+{
+  "id": "measure_battery_voltage_changed",
+  "title": {
+    "en": "The battery voltage changed",
+    "ar": "تغيّر جهد البطارية",
+    "da": "Batterispændingen er ændret",
+    "de": "Die Batteriespannung hat sich geändert",
+    "es": "El voltaje de la batería ha cambiado",
+    "fr": "La tension de la batterie a changé",
+    "it": "La tensione della batteria è cambiata",
+    "ko": "배터리 전압이 변경됨",
+    "nl": "De batterijspanning is veranderd",
+    "no": "Batterispenningen er endret",
+    "pl": "Napięcie baterii uległo zmianie",
+    "ru": "Напряжение батареи изменилось",
+    "sv": "Batterispänningen har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_battery_voltage",
+      "title": {
+        "en": "Battery voltage",
+        "ar": "جهد البطارية",
+        "da": "Batterispænding",
+        "de": "Batteriespannung",
+        "es": "Voltaje de la batería",
+        "fr": "Tension de la batterie",
+        "it": "Tensione batteria",
+        "ko": "배터리 전압",
+        "nl": "Batterijspanning",
+        "no": "Batterispenning",
+        "pl": "Napięcie baterii",
+        "ru": "Напряжение батареи",
+        "sv": "Batterispänning"
+      },
+      "type": "number",
+      "example": 12.6
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_battery_voltage"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "measure_energy_distance_changed",
+  "title": {
+    "en": "The energy per distance changed",
+    "ar": "تغيّرت الطاقة لكل مسافة",
+    "da": "Energien pr. afstand er ændret",
+    "de": "Die Energie pro Distanz hat sich geändert",
+    "es": "La energía por distancia ha cambiado",
+    "fr": "L’énergie par distance a changé",
+    "it": "L’energia per distanza è cambiata",
+    "ko": "거리당 에너지가 변경됨",
+    "nl": "De energie per afstand is veranderd",
+    "no": "Energien per avstand er endret",
+    "pl": "Energia na dystans uległa zmianie",
+    "ru": "Энергия на расстояние изменилась",
+    "sv": "Energin per avstånd har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_energy_distance",
+      "title": {
+        "en": "Energy per distance",
+        "ar": "الطاقة لكل مسافة",
+        "da": "Energi pr. afstand",
+        "de": "Energie pro Distanz",
+        "es": "Energía por distancia",
+        "fr": "Énergie par distance",
+        "it": "Energia per distanza",
+        "ko": "거리당 에너지",
+        "nl": "Energie per afstand",
+        "no": "Energi per avstand",
+        "pl": "Energia na dystans",
+        "ru": "Энергия на расстояние",
+        "sv": "Energi per avstånd"
+      },
+      "type": "number",
+      "example": 15
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_energy_distance"
+    }
+  ]
+}

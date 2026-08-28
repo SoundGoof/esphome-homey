@@ -1,0 +1,47 @@
+{
+  "id": "measure_duration_changed",
+  "title": {
+    "en": "The duration changed",
+    "ar": "تغيّرت المدة",
+    "da": "Varigheden er ændret",
+    "de": "Die Dauer hat sich geändert",
+    "es": "La duración ha cambiado",
+    "fr": "La durée a changé",
+    "it": "La durata è cambiata",
+    "ko": "기간이 변경됨",
+    "nl": "De duur is veranderd",
+    "no": "Varigheten er endret",
+    "pl": "Czas trwania uległ zmianie",
+    "ru": "Длительность изменилась",
+    "sv": "Varaktigheten har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_duration",
+      "title": {
+        "en": "Duration",
+        "ar": "المدة",
+        "da": "Varighed",
+        "de": "Dauer",
+        "es": "Duración",
+        "fr": "Durée",
+        "it": "Durata",
+        "ko": "기간",
+        "nl": "Duur",
+        "no": "Varighet",
+        "pl": "Czas trwania",
+        "ru": "Длительность",
+        "sv": "Varaktighet"
+      },
+      "type": "number",
+      "example": 60
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_duration"
+    }
+  ]
+}

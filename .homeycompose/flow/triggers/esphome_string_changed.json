@@ -1,0 +1,67 @@
+{
+  "id": "esphome_string_changed",
+  "title": {
+    "en": "A text value changed",
+    "ar": "تغيّرت قيمة نصية",
+    "da": "En tekstværdi er ændret",
+    "de": "Ein Textwert hat sich geändert",
+    "es": "Un valor de texto ha cambiado",
+    "fr": "Une valeur texte a changé",
+    "it": "Un valore di testo è cambiato",
+    "ko": "텍스트 값이 변경됨",
+    "nl": "Een tekstwaarde is veranderd",
+    "no": "En tekstverdi er endret",
+    "pl": "Wartość tekstowa uległa zmianie",
+    "ru": "Текстовое значение изменилось",
+    "sv": "Ett textvärde har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "esphome_string",
+      "title": {
+        "en": "Text",
+        "ar": "نص",
+        "da": "Tekst",
+        "de": "Text",
+        "es": "Texto",
+        "fr": "Texte",
+        "it": "Testo",
+        "ko": "텍스트",
+        "nl": "Tekst",
+        "no": "Tekst",
+        "pl": "Tekst",
+        "ru": "Текст",
+        "sv": "Text"
+      },
+      "type": "string",
+      "example": "ok"
+    },
+    {
+      "name": "name",
+      "title": {
+        "en": "Name",
+        "ar": "الاسم",
+        "da": "Navn",
+        "de": "Name",
+        "es": "Nombre",
+        "fr": "Nom",
+        "it": "Nome",
+        "ko": "이름",
+        "nl": "Naam",
+        "no": "Navn",
+        "pl": "Nazwa",
+        "ru": "Имя",
+        "sv": "Namn"
+      },
+      "type": "string",
+      "example": "Status"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=esphome_string"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "light_effect_set",
+  "title": {
+    "en": "Set the light effect to",
+    "ar": "اضبط تأثير الإضاءة على",
+    "da": "Indstil lyseffekt til",
+    "de": "Lichteffekt setzen auf",
+    "es": "Establecer el efecto de luz en",
+    "fr": "Régler l’effet lumineux sur",
+    "it": "Imposta l’effetto luce su",
+    "ko": "조명 효과를 다음으로 설정",
+    "nl": "Zet het lichteffect op",
+    "no": "Sett lyseffekt til",
+    "pl": "Ustaw efekt świetlny na",
+    "ru": "Установить световой эффект на",
+    "sv": "Ställ in ljuseffekt till"
+  },
+  "titleFormatted": {
+    "en": "Set the light effect to [[light_effect]]",
+    "ar": "اضبط تأثير الإضاءة على [[light_effect]]",
+    "da": "Indstil lyseffekt til [[light_effect]]",
+    "de": "Lichteffekt setzen auf [[light_effect]]",
+    "es": "Establecer el efecto de luz en [[light_effect]]",
+    "fr": "Régler l’effet lumineux sur [[light_effect]]",
+    "it": "Imposta l’effetto luce su [[light_effect]]",
+    "ko": "조명 효과를 [[light_effect]](으)로 설정",
+    "nl": "Zet het lichteffect op [[light_effect]]",
+    "no": "Sett lyseffekt til [[light_effect]]",
+    "pl": "Ustaw efekt świetlny na [[light_effect]]",
+    "ru": "Установить световой эффект на [[light_effect]]",
+    "sv": "Ställ in ljuseffekt till [[light_effect]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=light_effect"
+    },
+    {
+      "name": "light_effect",
+      "title": {
+        "en": "Light effect",
+        "ar": "تأثير الإضاءة",
+        "da": "Lyseffekt",
+        "de": "Lichteffekt",
+        "es": "Efecto de luz",
+        "fr": "Effet lumineux",
+        "it": "Effetto luce",
+        "ko": "조명 효과",
+        "nl": "Lichteffect",
+        "no": "Lyseffekt",
+        "pl": "Efekt świetlny",
+        "ru": "Световой эффект",
+        "sv": "Ljuseffekt"
+      },
+      "type": "autocomplete"
+    }
+  ]
+}

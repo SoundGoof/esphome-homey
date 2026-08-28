@@ -1,0 +1,35 @@
+{
+  "id": "measure_uptime_changed",
+  "title": {
+    "en": "The uptime changed",
+    "ar": "تغيّر الـ uptime",
+    "da": "Uptime er ændret",
+    "de": "Die Uptime hat sich geändert",
+    "es": "El uptime ha cambiado",
+    "fr": "L’uptime a changé",
+    "it": "L’uptime è cambiato",
+    "ko": "uptime이 변경됨",
+    "nl": "De uptime is veranderd",
+    "no": "Uptime er endret",
+    "pl": "Uptime uległ zmianie",
+    "ru": "Uptime изменился",
+    "sv": "Uptime har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_uptime",
+      "title": {
+        "en": "Uptime"
+      },
+      "type": "string",
+      "example": "1h 2m"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_uptime"
+    }
+  ]
+}

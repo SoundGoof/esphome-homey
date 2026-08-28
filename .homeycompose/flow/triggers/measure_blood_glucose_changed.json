@@ -1,0 +1,47 @@
+{
+  "id": "measure_blood_glucose_changed",
+  "title": {
+    "en": "The blood glucose changed",
+    "ar": "تغيّر سكر الدم",
+    "da": "Blodsukkeret er ændret",
+    "de": "Der Blutzucker hat sich geändert",
+    "es": "La glucosa en sangre ha cambiado",
+    "fr": "La glycémie a changé",
+    "it": "La glicemia è cambiata",
+    "ko": "혈당이 변경됨",
+    "nl": "De bloedglucose is veranderd",
+    "no": "Blodsukkeret er endret",
+    "pl": "Glukoza we krwi uległa zmianie",
+    "ru": "Глюкоза крови изменилась",
+    "sv": "Blodsockret har ändrats"
+  },
+  "tokens": [
+    {
+      "name": "measure_blood_glucose",
+      "title": {
+        "en": "Blood glucose",
+        "ar": "سكر الدم",
+        "da": "Blodsukker",
+        "de": "Blutzucker",
+        "es": "Glucosa en sangre",
+        "fr": "Glycémie",
+        "it": "Glicemia",
+        "ko": "혈당",
+        "nl": "Bloedglucose",
+        "no": "Blodsukker",
+        "pl": "Glukoza we krwi",
+        "ru": "Глюкоза крови",
+        "sv": "Blodsocker"
+      },
+      "type": "number",
+      "example": 5.5
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=esphome-device&capabilities=measure_blood_glucose"
+    }
+  ]
+}
